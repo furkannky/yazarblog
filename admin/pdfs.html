@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PDF Document Management | Admin Console</title>
+  <link rel="stylesheet" href="/css/index.css">
+  <link rel="stylesheet" href="/css/admin.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,650;1,400&display=swap" rel="stylesheet">
+</head>
+<body class="admin-body">
+
+  <div class="admin-wrapper" id="pdfs-deck-wrapper">
+    <!-- Sidebar -->
+    
+    <main class="admin-main">
+      <!-- Header -->
+      
+      <div class="admin-content">
+        
+        <div class="action-bar">
+          <h2 style="font-family:var(--font-serif); font-size:1.5rem; margin:0;">PDF Araştırma Kütüphanesi</h2>
+          <button class="btn btn-primary" id="btn-create-pdf">+ Belge Yükle</button>
+        </div>
+
+        <!-- Master List Panel -->
+        <div class="panel-card" id="pdfs-list-panel">
+          <div class="data-table-wrapper">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Başlık</th>
+                  <th>Açıklama</th>
+                  <th>Kategori</th>
+                  <th>Boyut</th>
+                  <th>Tarih</th>
+                  <th>Görünürlük</th>
+                  <th>İndirme</th>
+                  <th style="text-align:right;">İşlemler</th>
+                </tr>
+              </thead>
+              <tbody id="pdfs-table-body">
+                <!-- Loaded dynamically -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Compose / Edit Panel Form -->
+        <div class="panel-card" id="pdf-compose-panel" style="display:none; padding:2.5rem;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:2rem; border-bottom:1px solid var(--border-color); padding-bottom:1rem;">
+            <h2 id="pdf-compose-title" style="font-family:var(--font-serif);">Belge Yapılandır</h2>
+            <button class="btn btn-secondary btn-sm" id="btn-cancel-pdf-compose">&larr; Kataloğa Dön</button>
+          </div>
+
+          <form id="pdf-form">
+            <input type="hidden" id="edit-pdf-id">
+
+            <div class="form-group">
+              <label class="form-label" for="pdf-title-input">Belge Başlığı *</label>
+              <input type="text" id="pdf-title-input" class="form-control" placeholder="örn. Bizans Mimarisi Yapısal Koordinatları" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="pdf-desc-input">Belge Açıklaması</label>
+              <textarea id="pdf-desc-input" class="form-control" rows="3" placeholder="Bu araştırma indirmesinin içeriğini detaylandıran kısa özet..."></textarea>
+            </div>
+
+            <div class="form-row-2">
+              <!-- Category select -->
+              <div class="form-group">
+                <label class="form-label" for="pdf-category-select">Kategori Başlığı *</label>
+                <select id="pdf-category-select" class="form-control" required>
+                  <!-- Populated dynamically -->
+                </select>
+              </div>
+
+              <!-- Upload field -->
+              <div class="form-group">
+                <label class="form-label" for="pdf-file-input">PDF Dosyası Yükle *</label>
+                <div style="display:flex; gap:1rem; align-items:center;">
+                  <button type="button" class="btn btn-secondary btn-sm" id="btn-pick-pdf-file">PDF Yükle</button>
+                  <input type="file" id="pdf-file-input" style="display:none;" accept="application/pdf">
+                  <input type="text" id="pdf-file-url" class="form-control" placeholder="Veyahut doğrudan hedef URL girin" style="flex-grow:1;" required>
+                </div>
+                <div style="display:flex; justify-content:space-between; font-size:0.8rem; color:var(--text-tertiary); margin-top:0.25rem;">
+                  <span>Boyut bilgisini aşağıya girin:</span>
+                  <input type="text" id="pdf-file-size" class="form-control" placeholder="1.2 MB" style="width:90px; height:24px; padding:0 6px; font-size:0.8rem; margin:0;" required>
+                </div>
+              </div>
+            </div>
+
+            <!-- Visible status -->
+            <div class="form-group" style="margin-top:1.5rem; display:flex; align-items:center; gap:0.5rem;">
+              <input type="checkbox" id="pdf-visible-checkbox" style="width:16px; height:16px;" checked>
+              <label for="pdf-visible-checkbox" style="margin-bottom:0; cursor:pointer;">
+                <strong>Kamuya Açık Kütüphanede Görünsün</strong> (Katalog kaydını gizlemek için işareti kaldırın)
+              </label>
+            </div>
+
+            <!-- Submission Actions -->
+            <div style="display:flex; justify-content:flex-end; gap:1rem; margin-top:2rem; border-top:1px solid var(--border-color); padding-top:1.5rem;">
+              <button type="button" class="btn btn-secondary" id="btn-cancel-pdf-compose-2">İptal</button>
+              <button type="submit" class="btn btn-primary">Belgeyi Kaydet</button>
+            </div>
+
+          </form>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <script type="module" src="/admin/js/pdfs-dashboard.js"></script>
+</body>
+</html>

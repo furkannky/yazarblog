@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Site Ayarları | Yönetici Paneli</title>
+  <link rel="stylesheet" href="/css/index.css">
+  <link rel="stylesheet" href="/css/admin.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,650;1,400&display=swap" rel="stylesheet">
+</head>
+<body class="admin-body">
+
+  <div class="admin-wrapper" id="settings-deck-wrapper">
+    <!-- Sidebar -->
+    
+    <main class="admin-main">
+      <!-- Header -->
+      
+      <div class="admin-content" style="max-width:800px;">
+        
+        <div class="panel-card" style="padding:2.5rem;">
+          <h2 style="font-family:var(--font-serif); margin-bottom:1.5rem; font-size:1.5rem; border-bottom:1px solid var(--border-color); padding-bottom:1rem;">Site Tercihleri Yapılandırması</h2>
+          
+          <form id="settings-form">
+            
+            <div class="form-row-2">
+              <div class="form-group">
+                <label class="form-label" for="setting-logo-text">Logo Metni *</label>
+                <input type="text" id="setting-logo-text" class="form-control" required placeholder="A. Author">
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="setting-contact-email">İletişim E-posta Adresi *</label>
+                <input type="email" id="setting-contact-email" class="form-control" required placeholder="yazar@publish.site">
+              </div>
+            </div>
+
+            <div class="form-row-2">
+              <div class="form-group">
+                <label class="form-label" for="setting-banner-title">Anasayfa Karşılama Başlığı *</label>
+                <input type="text" id="setting-banner-title" class="form-control" required placeholder="Bilim, Tarih ve Sanat Üzerine Düşünceler">
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="setting-banner-subtitle">Anasayfa Karşılama Alt Başlığı *</label>
+                <input type="text" id="setting-banner-subtitle" class="form-control" required placeholder="Denemeler, tarihi anlatılar ve teknik kitaplar.">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="setting-footer-text">Alt Bilgi Telif Hakkı Bildirimi</label>
+              <input type="text" id="setting-footer-text" class="form-control" placeholder="© 2026 A. Author. Tüm hakları saklıdır.">
+            </div>
+
+            <div class="form-group" style="background-color:var(--bg-secondary); padding:1.5rem; border-radius:var(--radius-md); margin-top:2rem;">
+              <h4 style="margin-bottom:1rem; font-family:var(--font-serif);">Sosyal Medya Profilleri</h4>
+              <div class="form-row-3">
+                <div class="form-group" style="margin-bottom:0;">
+                  <label class="form-label" for="setting-social-twitter">Twitter URL</label>
+                  <input type="url" id="setting-social-twitter" class="form-control" placeholder="https://twitter.com/...">
+                </div>
+                <div class="form-group" style="margin-bottom:0;">
+                  <label class="form-label" for="setting-social-medium">Medium URL</label>
+                  <input type="url" id="setting-social-medium" class="form-control" placeholder="https://medium.com/@...">
+                </div>
+                <div class="form-group" style="margin-bottom:0;">
+                  <label class="form-label" for="setting-social-github">GitHub Profil URL</label>
+                  <input type="url" id="setting-social-github" class="form-control" placeholder="https://github.com/...">
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group" style="margin-top:2rem;">
+              <label class="form-label" for="setting-analytics-id">Google Analytics Takip Kimliği (Measurement ID)</label>
+              <input type="text" id="setting-analytics-id" class="form-control" placeholder="G-XXXXXXXXXX">
+            </div>
+
+            <div style="display:flex; justify-content:flex-end; gap:1rem; margin-top:2rem; border-top:1px solid var(--border-color); padding-top:1.5rem;">
+              <button type="submit" class="btn btn-primary" style="min-width: 140px;">Ayarları Kaydet</button>
+            </div>
+
+          </form>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <script type="module" src="/admin/js/settings-dashboard.js"></script>
+</body>
+</html>

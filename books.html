@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kitaplar | A. Author Kitap Kataloğu</title>
+  <meta name="description" content="A. Author tarafından Bizans tarihi mimarileri ve kuantum fiziği üzerine yazılmış kitapları inceleyin.">
+  <link rel="stylesheet" href="/css/index.css">
+  <link rel="stylesheet" href="/css/public.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,650;1,400&display=swap" rel="stylesheet">
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+  <header class="site-header"></header>
+
+  <main class="container">
+    <div class="about-header scroll-trigger">
+      <h1>Yayınlanmış Kitaplar</h1>
+      <p style="color: var(--text-secondary); max-width:600px; margin:0 auto;">Yayınlanan tüm kitapları inceleyin, satın alma bağlantılarına ulaşın ve örnek bölümleri okuyun.</p>
+    </div>
+
+    <!-- Active Books Grid -->
+    <section class="books-grid scroll-trigger" id="books-catalog-list" style="margin-bottom: 5rem; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 3rem;">
+      <!-- Loaded via books.js -->
+    </section>
+  </main>
+
+  <footer class="site-footer"></footer>
+
+  <script type="module" src="/js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Helper to check if requester is authenticated admin
+    function isAdmin() {
+      return request.auth != null && request.auth.token.email == 'admin@publish.site';
+    }
+
+    // Articles: Anyone can read published articles. Only admins can read drafts / write articles.
+    match /articles/{articleId} {
+      allow read: if resource.data.status == 'published' || isAdmin();
+      allow write, delete: if isAdmin();
+    }
+
+    // Books: Anyone can read. Admins can write.
+    match /books/{bookId} {
+      allow read: if true;
+      allow write, delete: if isAdmin();
+    }
+
+    // Categories: Anyone can read. Admins can write.
+    match /categories/{categoryId} {
+      allow read: if true;
+      allow write, delete: if isAdmin();
+    }
+
+    // Comments: Anyone can read approved comments. Anyone can post a comment. Admins can moderate.
+    match /comments/{commentId} {
+      allow read: if resource.data.status == 'approved' || isAdmin();
+      allow create: if request.resource.data.authorName != null &&
+                      request.resource.data.authorEmail != null &&
+                      request.resource.data.content != null &&
+                      request.resource.data.status == 'pending';
+      allow update, delete: if isAdmin();
+    }
+
+    // Settings: Public configuration read. Admin-only modifications.
+    match /settings/{docId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // Downloads logs: Anyone can write (increment). Admin can view/modify.
+    match /downloads/{downloadId} {
+      allow create: if true;
+      allow read, update, delete: if isAdmin();
+    }
+
+    // Newsletter registrations: Anyone can register. Only administrative views read/delete.
+    match /newsletter/{entryId} {
+      allow create: if request.resource.data.email != null;
+      allow read, update, delete: if isAdmin();
+    }
+  }
+}

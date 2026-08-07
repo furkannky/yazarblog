@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Yorum Moderasyonu | Yönetici Paneli</title>
+  <link rel="stylesheet" href="/css/index.css">
+  <link rel="stylesheet" href="/css/admin.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,650;1,400&display=swap" rel="stylesheet">
+</head>
+<body class="admin-body">
+
+  <div class="admin-wrapper" id="comments-deck-wrapper">
+    <!-- Sidebar -->
+    
+    <main class="admin-main">
+      <!-- Header -->
+      
+      <div class="admin-content">
+        
+        <div class="action-bar">
+          <div style="display:flex; gap:1rem;">
+            <button class="tab-btn active" id="comment-tab-all">Tümü</button>
+            <button class="tab-btn" id="comment-tab-pending">Onay Bekleyenler</button>
+            <button class="tab-btn" id="comment-tab-approved">Onaylananlar</button>
+            <button class="tab-btn" id="comment-tab-spam">Spam</button>
+          </div>
+        </div>
+
+        <!-- Master List Panel -->
+        <div class="panel-card" id="comments-list-panel" style="padding: 2.25rem;">
+          <h2 style="font-family:var(--font-serif); margin-bottom:1.5rem; font-size:1.5rem;">Yorum Moderasyon Kuyruğu</h2>
+          <div class="data-table-wrapper" style="border:none; margin:0;">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Yazar</th>
+                  <th>Makale</th>
+                  <th>Yorum Açıklaması</th>
+                  <th>Tarih</th>
+                  <th>Durum</th>
+                  <th style="text-align:right;">İşlemler</th>
+                </tr>
+              </thead>
+              <tbody id="comments-table-body">
+                <!-- Loaded dynamically -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <script type="module" src="/admin/js/comments-dashboard.js"></script>
+</body>
+</html>

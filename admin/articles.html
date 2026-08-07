@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Makale Yönetimi | Yönetici Paneli</title>
+  <link rel="stylesheet" href="/css/index.css">
+  <link rel="stylesheet" href="/css/admin.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,650;1,400&display=swap" rel="stylesheet">
+</head>
+<body class="admin-body">
+
+  <div class="admin-wrapper" id="articles-deck-wrapper">
+    <!-- Sidebar injected here -->
+    
+    <main class="admin-main">
+      <!-- Header injected here -->
+      
+      <div class="admin-content">
+        
+        <!-- Tab Toggles & Action bar -->
+        <div class="action-bar">
+          <div style="display:flex; gap:1rem;">
+            <button class="tab-btn active" id="tab-filter-all">Tümü</button>
+            <button class="tab-btn" id="tab-filter-published">Yayınlananlar</button>
+            <button class="tab-btn" id="tab-filter-drafts">Taslaklar</button>
+          </div>
+          <button class="btn btn-primary" id="btn-create-article">+ Makale Yaz</button>
+        </div>
+
+        <!-- Master List Table -->
+        <div class="panel-card" id="articles-list-panel">
+          <div class="data-table-wrapper">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Kapak</th>
+                  <th>Başlık</th>
+                  <th>Kategoriler</th>
+                  <th>Tarih</th>
+                  <th>Okunma</th>
+                  <th>Durum</th>
+                  <th style="text-align:right;">İşlemler</th>
+                </tr>
+              </thead>
+              <tbody id="articles-table-body">
+                <!-- Loaded dynamically -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Editor Compose Screen - Swapped visually with list panel -->
+        <div class="panel-card" id="article-compose-panel" style="display:none; padding:2rem;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:2rem; border-bottom:1px solid var(--border-color); padding-bottom:1rem;">
+            <h2 id="compose-title-hdr" style="font-family:var(--font-serif);">Yeni Makale Yaz</h2>
+            <button class="btn btn-secondary btn-sm" id="btn-cancel-compose">&larr; Listeye Dön</button>
+          </div>
+
+          <form id="article-form">
+            <input type="hidden" id="edit-article-id">
+
+            <div class="form-row-2">
+              <div class="form-group">
+                <label class="form-label" for="article-title-input">Makale Başlığı *</label>
+                <input type="text" id="article-title-input" class="form-control" placeholder="Başlık girin" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="article-slug-input">URL Takısı (Boş bırakılırsa otomatik oluşturulur)</label>
+                <input type="text" id="article-slug-input" class="form-control" placeholder="örn. kuantum-fizigi-ve-topoloji">
+              </div>
+            </div>
+
+            <div class="form-row-2">
+              <div class="form-group">
+                <label class="form-label" for="article-summary-input">Kısa Özet *</label>
+                <textarea id="article-summary-input" class="form-control" rows="2" placeholder="Makalenin kısa özeti (listelerde görünür)" required></textarea>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Kategoriler (Çoklu seçim için Ctrl tuşuna basılı tutun) *</label>
+                <select id="article-categories-select" class="form-control" multiple style="height:72px;" required>
+                  <!-- Populated dynamically -->
+                </select>
+              </div>
+            </div>
+
+            <div class="form-row-2">
+              <div class="form-group">
+                <label class="form-label" for="article-cover-input">Kapak Görseli</label>
+                <div style="display:flex; gap:1rem; align-items:center;">
+                  <button type="button" class="btn btn-secondary btn-sm" id="btn-pick-cover">Kapak Seç</button>
+                  <input type="file" id="article-cover-input" style="display:none;" accept="image/*">
+                  <input type="text" id="article-cover-url" class="form-control" placeholder="Veyahut doğrudan görsel URL'si girin" style="flex-grow:1;">
+                </div>
+                <img id="article-cover-preview" src="" alt="Önizleme" style="display:none; max-height:80px; margin-top:0.5rem; border-radius:var(--radius-sm);">
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="article-tags-input">Etiketler (Virgülle ayrılmış)</label>
+                <input type="text" id="article-tags-input" class="form-control" placeholder="tarih, fizik, matematik">
+              </div>
+            </div>
+
+            <!-- Custom Rich text editor component mount point -->
+            <div class="form-group">
+              <label class="form-label">Makale İçeriği *</label>
+              <div id="editor-mount-point"></div>
+            </div>
+
+            <!-- SEO Specifications -->
+            <div class="form-group" style="background-color: var(--bg-secondary); padding:1.5rem; border-radius:var(--radius-md); margin-top:2rem;">
+              <h4 style="margin-bottom:1rem; font-family:var(--font-serif);">Arama Motoru Optimizasyonu (SEO) detayları</h4>
+              <div class="form-row-2">
+                <div class="form-group" style="margin-bottom:0;">
+                  <label class="form-label" for="article-seo-title">Meta Başlığı</label>
+                  <input type="text" id="article-seo-title" class="form-control" placeholder="Başlık etiketini geçersiz kıl">
+                </div>
+                <div class="form-group" style="margin-bottom:0;">
+                  <label class="form-label" for="article-seo-desc">Meta Açıklaması</label>
+                  <input type="text" id="article-seo-desc" class="form-control" placeholder="Açıklama etiketini geçersiz kıl">
+                </div>
+              </div>
+            </div>
+
+            <!-- Status configuration row -->
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-top:2rem; border-top:1px solid var(--border-color); padding-top:1.5rem;">
+              <div class="form-group" style="margin-bottom:0; display:flex; align-items:center; gap:0.5rem;">
+                <label class="form-label" for="article-status-select" style="margin-bottom:0;">İş Akışı Durumu:</label>
+                <select id="article-status-select" class="form-control" style="width:140px; margin-top:0;">
+                  <option value="draft">Taslak</option>
+                  <option value="published">Yayınlandı</option>
+                </select>
+              </div>
+              <div style="display:flex; gap:1rem;">
+                <button type="button" class="btn btn-secondary" id="btn-cancel-compose-2">İptal</button>
+                <button type="submit" class="btn btn-primary" id="btn-save-submit">Makaleyi Kaydet</button>
+              </div>
+            </div>
+
+          </form>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <script type="module" src="/admin/js/articles-dashboard.js"></script>
+</body>
+</html>

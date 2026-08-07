@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Yönetici Paneli | Genel Bakış</title>
+  <link rel="stylesheet" href="/css/index.css">
+  <link rel="stylesheet" href="/css/admin.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,650;1,400&display=swap" rel="stylesheet">
+</head>
+<body class="admin-body">
+
+  <div class="admin-wrapper">
+    <!-- Sidebar gets injected here via runAdminGuard/admin-layout -->
+    
+    <main class="admin-main">
+      <!-- Header gets injected here -->
+      
+      <div class="admin-content">
+        
+        <!-- Metrics Counters Grid -->
+        <section class="metrics-grid">
+          <div class="metric-card accent-card">
+            <div class="metric-details">
+              <h3>Toplam Makale</h3>
+              <div class="metric-value" id="stats-total-articles">0</div>
+            </div>
+            <div class="metric-icon">📝</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-details">
+              <h3>Yayınlanan</h3>
+              <div class="metric-value" id="stats-published-articles">0</div>
+            </div>
+            <div class="metric-icon">✨</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-details">
+              <h3>Toplam Kitap</h3>
+              <div class="metric-value" id="stats-total-books">0</div>
+            </div>
+            <div class="metric-icon">📚</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-details">
+              <h3>Toplam PDF</h3>
+              <div class="metric-value" id="stats-total-pdfs">0</div>
+            </div>
+            <div class="metric-icon">💾</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-details">
+              <h3>Onay Bekleyen Yorumlar</h3>
+              <div class="metric-value" id="stats-pending-comments" style="color: var(--warning);">0</div>
+            </div>
+            <div class="metric-icon">💬</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-details">
+              <h3>Toplam İndirme</h3>
+              <div class="metric-value" id="stats-total-downloads">0</div>
+            </div>
+            <div class="metric-icon">📥</div>
+          </div>
+        </section>
+
+        <!-- Rows: Top Content Performance and Recent Activities -->
+        <div class="admin-card-row">
+          
+          <!-- Performance Panels -->
+          <div style="display:flex; flex-direction:column; gap:1.5rem;">
+            
+            <!-- Most Read Articles -->
+            <div class="panel-card">
+              <div class="panel-header">
+                <span class="panel-title">En Çok Okunan Makaleler</span>
+              </div>
+              <div class="data-table-wrapper" style="border:none; margin:0;">
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th>Başlık</th>
+                      <th>Okunma</th>
+                    </tr>
+                  </thead>
+                  <tbody id="dashboard-popular-articles">
+                    <!-- Loaded dynamically -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- Most Downloaded PDFs -->
+            <div class="panel-card">
+              <div class="panel-header">
+                <span class="panel-title">En Çok İndirilen PDF'ler</span>
+              </div>
+              <div class="data-table-wrapper" style="border:none; margin:0;">
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th>Belge</th>
+                      <th>Boyut</th>
+                      <th>İndirme</th>
+                    </tr>
+                  </thead>
+                  <tbody id="dashboard-popular-pdfs">
+                    <!-- Loaded dynamically -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Recent Activity Log Feed -->
+          <div class="panel-card">
+            <div class="panel-header">
+              <span class="panel-title">Son Aktivite Günlükleri</span>
+            </div>
+            <ul class="activity-list" id="dashboard-activity-feed">
+              <li class="activity-item">
+                <div class="activity-badge"></div>
+                <div class="activity-desc">Panel günlük kaydı aktif. Analitik veri indeksleri izleniyor.</div>
+                <div class="activity-time">Şimdi</div>
+              </li>
+              <!-- Injected dynamically -->
+            </ul>
+          </div>
+
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <script type="module">
+    import { injectAdminStructure } from './js/admin-layout.js';
+    import { dbService } from '/js/firebase/config.js';
+
+    // Guard page access and build sidebar
+    await injectAdminStructure("dashboard");
+
+    // Load Overview Business stats
+    async function loadStats() {
+      const [articles, books, pdfs, comments, newsletter] = await Promise.all([
+        dbService.getArticles(),
+        dbService.getBooks(),
+        dbService.getPdfs(),
+        dbService.getCommentsAll(),
+        dbService.getNewsletterSubs()
+      ]);
+
+      // Count Metrics
+      const totalArticles = articles.length;
+      const publishedArticles = articles.filter(a => a.status === "published").length;
+      const totalBooks = books.length;
+      const totalPdfs = pdfs.length;
+      
+      const pendingComments = comments.filter(c => c.status === "pending").length;
+      
+      const totalDownloads = pdfs.reduce((sum, p) => sum + (p.downloads || 0), 0) + 
+                             books.reduce((sum, b) => sum + (b.downloads || 0), 0);
+
+      // Populate DOM elements
+      document.getElementById("stats-total-articles").textContent = totalArticles;
+      document.getElementById("stats-published-articles").textContent = publishedArticles;
+      document.getElementById("stats-total-books").textContent = totalBooks;
+      document.getElementById("stats-total-pdfs").textContent = totalPdfs;
+      document.getElementById("stats-pending-comments").textContent = pendingComments;
+      document.getElementById("stats-total-downloads").textContent = totalDownloads;
+
+      // Populate Most Read
+      const sortedArticles = [...articles].sort((a,b) => (b.views || 0) - (a.views || 0)).slice(0, 3);
+      document.getElementById("dashboard-popular-articles").innerHTML = sortedArticles.map(a => `
+        <tr>
+          <td><a href="/article.html?slug=${a.slug}" target="_blank" style="font-weight:500; text-decoration:underline;">${a.title}</a></td>
+          <td style="font-weight:600; color:var(--accent);">${a.views || 0}</td>
+        </tr>
+      `).join('');
+
+      // Populate Most Downloaded
+      const sortedPdfs = [...pdfs].sort((a,b) => (b.downloads || 0) - (a.downloads || 0)).slice(0, 3);
+      document.getElementById("dashboard-popular-pdfs").innerHTML = sortedPdfs.map(p => `
+        <tr>
+          <td style="font-weight:500;">${p.title}</td>
+          <td>${p.fileSize}</td>
+          <td style="font-weight:600; color:var(--accent);">${p.downloads || 0}</td>
+        </tr>
+      `).join('');
+
+      // Inject some dynamic log activities for visual excellence
+      const feed = document.getElementById("dashboard-activity-feed");
+      let activities = [];
+
+      // Add recent comment submissions to logs
+      comments.slice(-2).reverse().forEach(c => {
+        activities.push({
+          desc: `<strong>${c.authorName}</strong> tarafından <em>${c.articleId}</em> ID'li makaleye yorum yapıldı`,
+          time: "Yeni",
+          color: c.status === "approved" ? "var(--success)" : "var(--warning)"
+        });
+      });
+
+      // Add newsletter subscriptions to logs
+      newsletter.slice(-2).reverse().forEach(n => {
+        activities.push({
+          desc: `Yeni bülten aboneliği: <strong>${n.email}</strong>`,
+          time: "Abone Oldu",
+          color: "var(--accent)"
+        });
+      });
+
+      if (activities.length > 0) {
+        feed.innerHTML = activities.map(act => `
+          <li class="activity-item">
+            <div class="activity-badge" style="background-color: ${act.color};"></div>
+            <div class="activity-desc">${act.desc}</div>
+            <div class="activity-time">${act.time}</div>
+          </li>
+        `).join('') + feed.innerHTML;
+      }
+    }
+
+    await loadStats();
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>A. Author | Yazar & Akademisyen Portfolyosu</title>
+    <meta
+      name="description"
+      content="A. Author resmi web sitesi. Güncel yazılar, kitaplar, araştırma makaleleri ve bülten güncellemeleri."
+    />
+    <link rel="stylesheet" href="/css/index.css" />
+    <link rel="stylesheet" href="/css/public.css" />
+    <!-- Google Fonts: Inter & Lora -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,650;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+  </head>
+  <body>
+    <!-- Sticky Site Header -->
+    <header class="site-header"></header>
+
+    <main>
+      <!-- Hero Banner Section -->
+      <section class="hero scroll-trigger">
+        <div class="container">
+          <h1 class="hero-title" id="hero-title-display">
+            Bilim, Tarih ve Sanat Üzerine Düşünceler
+          </h1>
+          <p class="hero-subtitle" id="hero-subtitle-display">
+            Yazar tarafından doğrudan yayınlanan denemeler, tarihi çalışmalar ve teknik kitaplar.
+          </p>
+          <a href="/articles.html" class="btn btn-primary">Okumaya Başla</a>
+        </div>
+      </section>
+
+      <!-- Featured Article Highlight -->
+      <section class="container scroll-trigger" style="margin-top: 2rem">
+        <h2 class="section-title">Öne Çıkan Makale</h2>
+        <div id="featured-article-root">
+          <!-- Injected via home.js (Skeleton loader displays here first) -->
+        </div>
+      </section>
+
+      <!-- Latest Articles Grid -->
+      <section class="container scroll-trigger" style="margin-top: 4rem">
+        <h2 class="section-title">
+          <span>Son Yazılar</span>
+          <a href="/articles.html" class="section-link">Tümünü Gör &rarr;</a>
+        </h2>
+        <div class="articles-grid" id="latest-articles-root">
+          <!-- Injected via home.js -->
+        </div>
+      </section>
+
+      <!-- Featured Books Grid -->
+      <section class="container scroll-trigger" style="margin-top: 4rem">
+        <h2 class="section-title">
+          <span>Öne Çıkan Kitaplar</span>
+          <a href="/books.html" class="section-link">Tüm Kitaplar &rarr;</a>
+        </h2>
+        <div class="books-grid" id="featured-books-root">
+          <!-- Injected via home.js -->
+        </div>
+      </section>
+
+      <!-- Author Profile Summary -->
+      <section class="container scroll-trigger">
+        <div class="author-intro">
+          <img
+            src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'><rect width='100' height='100' fill='%234a5568'/><circle cx='50' cy='35' r='20' fill='%23cbd5e0'/><path d='M20 80c0-15 15-20 30-20s30 5 30 20z' fill='%23cbd5e0'/></svg>"
+            alt="A. Author Avatar"
+            class="author-intro-avatar"
+            id="about-avatar-display"
+          />
+          <div class="author-intro-details">
+            <h2>Yazar Hakkında</h2>
+            <p id="about-intro-text">
+              A. Author; deneme yazarı, tarih araştırmacısı ve kuantum donanım teorisyenidir.
+              Ege Orta Çağ mimarisini haritalandırma ve atom altı istatistikleri topluma yönelik
+              kitaplara dönüştürme konusunda on yılı aşkın araştırma geçmişine sahiptir.
+            </p>
+            <a href="/about.html" class="section-link"
+              >Biyografinin Tamamını Oku &rarr;</a
+            >
+          </div>
+        </div>
+      </section>
+
+      <!-- Newsletter Registration Section -->
+      <section class="container scroll-trigger">
+        <div class="newsletter-section">
+          <h2 class="newsletter-title">Bültene Abone Olun</h2>
+          <p class="newsletter-desc">
+            Yeni denemeler, kitap bölümleri veya araştırma makaleleri yayınlandığında
+            bilgilendirme güncellemeleri alın. Asla spam gönderilmez.
+          </p>
+          <form class="newsletter-form" id="newsletter-form-home">
+            <input
+              type="email"
+              class="form-control"
+              placeholder="E-posta adresinizi girin"
+              required
+              aria-label="E-posta Adresi"
+            />
+            <button
+              type="submit"
+              class="btn btn-primary"
+              style="white-space: nowrap"
+            >
+              Abone Ol
+            </button>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <!-- Site Footer -->
+    <footer class="site-footer"></footer>
+
+    <!-- Application Root Initializer -->
+    <script type="module" src="/js/app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book Management | Admin Console</title>
+  <link rel="stylesheet" href="/css/index.css">
+  <link rel="stylesheet" href="/css/admin.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,650;1,400&display=swap" rel="stylesheet">
+</head>
+<body class="admin-body">
+
+  <div class="admin-wrapper" id="books-deck-wrapper">
+    <!-- Sidebar -->
+    
+    <main class="admin-main">
+      <!-- Header -->
+      
+      <div class="admin-content">
+        
+        <div class="action-bar">
+          <h2 style="font-family:var(--font-serif); font-size:1.5rem; margin:0;">Kitap Kataloğu</h2>
+          <button class="btn btn-primary" id="btn-create-book">+ Kitap Ekle</button>
+        </div>
+
+        <!-- Master List Panel -->
+        <div class="panel-card" id="books-list-panel">
+          <div class="data-table-wrapper">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Kapak</th>
+                  <th>Başlık</th>
+                  <th>Açıklama</th>
+                  <th>Örnek PDF</th>
+                  <th>İndirme</th>
+                  <th style="text-align:right;">İşlemler</th>
+                </tr>
+              </thead>
+              <tbody id="books-table-body">
+                <!-- Loaded dynamically -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Compose / Edit Panel Form -->
+        <div class="panel-card" id="book-compose-panel" style="display:none; padding:2.5rem;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:2rem; border-bottom:1px solid var(--border-color); padding-bottom:1rem;">
+            <h2 id="book-compose-title" style="font-family:var(--font-serif);">Kitap Yapılandır</h2>
+            <button class="btn btn-secondary btn-sm" id="btn-cancel-book-compose">&larr; Kataloğa Dön</button>
+          </div>
+
+          <form id="book-form">
+            <input type="hidden" id="edit-book-id">
+
+            <div class="form-row-2">
+              <div class="form-group">
+                <label class="form-label" for="book-title-input">Kitap Adı *</label>
+                <input type="text" id="book-title-input" class="form-control" placeholder="Kitap adı" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="book-order-input">Katalog Sıra İndeksi</label>
+                <input type="number" id="book-order-input" class="form-control" value="0" placeholder="örn. 1" min="0">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="book-desc-input">Kitap Açıklaması *</label>
+              <textarea id="book-desc-input" class="form-control" rows="4" placeholder="Detaylı pazarlama metni veya açıklama özeti..." required></textarea>
+            </div>
+
+            <div class="form-row-2">
+              <!-- Book Cover -->
+              <div class="form-group">
+                <label class="form-label" for="book-cover-input">Kitap Kapağı</label>
+                <div style="display:flex; gap:1rem; align-items:center;">
+                  <button type="button" class="btn btn-secondary btn-sm" id="btn-pick-book-cover">Dosya Seç</button>
+                  <input type="file" id="book-cover-input" style="display:none;" accept="image/*">
+                  <input type="text" id="book-cover-url" class="form-control" placeholder="Veyahut doğrudan görsel URL'si girin" style="flex-grow:1;">
+                </div>
+                <img id="book-cover-preview" src="" alt="Kitap Önizlemesi" style="display:none; max-height:100px; margin-top:0.5rem; border-radius:var(--radius-sm);">
+              </div>
+
+              <!-- Book Sample PDF -->
+              <div class="form-group">
+                <label class="form-label" for="book-pdf-input">Örnek PDF Bölümü</label>
+                <div style="display:flex; gap:1rem; align-items:center;">
+                  <button type="button" class="btn btn-secondary btn-sm" id="btn-pick-book-pdf">PDF Seç</button>
+                  <input type="file" id="book-pdf-input" style="display:none;" accept="application/pdf">
+                  <input type="text" id="book-pdf-url" class="form-control" placeholder="Veyahut doğrudan PDF depolama yolu girin" style="flex-grow:1;">
+                </div>
+                <div style="display:flex; justify-content:space-between; font-size:0.8rem; color:var(--text-tertiary); margin-top:0.25rem;">
+                  <span>Hedef boyutu girin (örn. 1.5 MB):</span>
+                  <input type="text" id="book-pdf-size" class="form-control" placeholder="1.2 MB" style="width:90px; height:24px; padding:0 6px; font-size:0.8rem; margin:0;">
+                </div>
+              </div>
+            </div>
+
+            <!-- Marketing links -->
+            <div class="form-group" style="background-color: var(--bg-secondary); padding:1.5rem; border-radius:var(--radius-md); margin-top:1.5rem;">
+              <h4 style="margin-bottom:1rem; font-family:var(--font-serif);">Satın Alma Platformu Bağlantıları</h4>
+              <div class="form-row-2">
+                <div class="form-group" style="margin-bottom:0;">
+                  <label class="form-label" for="book-link-amazon">Amazon Satın Alma Bağlantısı</label>
+                  <input type="url" id="book-link-amazon" class="form-control" placeholder="https://amazon.com/... ">
+                </div>
+                <div class="form-group" style="margin-bottom:0;">
+                  <label class="form-label" for="book-link-kobo">Kobo Satın Alma Bağlantısı</label>
+                  <input type="url" id="book-link-kobo" class="form-control" placeholder="https://kobo.com/... ">
+                </div>
+              </div>
+            </div>
+
+            <!-- Downloadable setting checkbox -->
+            <div class="form-group" style="margin-top:1.5rem; display:flex; align-items:center; gap:0.5rem;">
+              <input type="checkbox" id="book-download-enabled-checkbox" style="width:16px; height:16px;">
+              <label for="book-download-enabled-checkbox" style="margin-bottom:0; cursor:pointer;">
+                <strong>Örnek İndirmeyi Etkinleştir</strong> (Genel katalogda indirme butonunu göster)
+              </label>
+            </div>
+
+            <!-- Submission Actions -->
+            <div style="display:flex; justify-content:flex-end; gap:1rem; margin-top:2rem; border-top:1px solid var(--border-color); padding-top:1.5rem;">
+              <button type="button" class="btn btn-secondary" id="btn-cancel-book-compose-2">İptal</button>
+              <button type="submit" class="btn btn-primary">Kitabı Kaydet</button>
+            </div>
+
+          </form>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <script type="module" src="/admin/js/books-dashboard.js"></script>
+</body>
+</html>

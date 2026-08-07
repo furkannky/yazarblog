@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hakkımda | A. Author Portfolyosu</title>
+  <meta name="description" content="A. Author biyografisi, kariyer geçmişi, ödülleri ve fotoğraf galerisi.">
+  <link rel="stylesheet" href="/css/index.css">
+  <link rel="stylesheet" href="/css/public.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,650;1,400&display=swap" rel="stylesheet">
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+  <header class="site-header"></header>
+
+  <main class="container">
+    <div class="about-header scroll-trigger">
+      <h1>Biyografi</h1>
+      <p style="color: var(--text-secondary); max-width:600px; margin:0 auto;">Bilimsel teoriden, antik mimari araştırmalarına ve anlatı biçimlerinin keşfine uzanan bir yolculuk.</p>
+    </div>
+
+    <div class="about-grid">
+      <!-- Main Content -->
+      <div class="about-content scroll-trigger">
+        <p>
+          Kariyerime saf matematik alanında başladım; kuantum hesaplama modellerine yönelmeden önce topoloji sistemlerini inceledim. Bu teknik temel, daha sonra tarihi mimari çalışmalarına geçişimi doğrudan besleyen, karmaşık sistemleri farklı bir açıdan takdir etmemi sağladı.
+        </p>
+        <p>
+          Son on yıldır araştırma odağım, Ege havzasındaki Bizans izleri üzerinde yoğunlaşmıştır. Özellikle Orta Bizans rönesansı sırasındaki yapısal kubbe inşa tekniklerine dair tarihi kayıtların incelenmesi ve çevirisine odaklanıyorum.
+        </p>
+        <p>
+          Bu web site benim kişisel yayın organım olarak hizmet veriyor. Burada güncel denemelerimi, kitap duyurularımı ve tanıtım amaçlı araştırma dosyalarımı (PDF Kütüphanesinde mevcuttur) paylaşıyorum. Bilgi paylaşımının açık, hızlı ve doğrudan olması gerektiğine inanıyorum.
+        </p>
+
+        <h3>Temel Araştırma Alanları</h3>
+        <ul style="padding-left:1.5rem; margin-bottom: 2rem; color:var(--text-secondary);">
+          <li style="margin-bottom:0.5rem;">Kuantum hesaplama mimarileri ve atom altı fizik çevirileri.</li>
+          <li style="margin-bottom:0.5rem;">Orta Bizans kubbeleri ve kentsel sur planları.</li>
+          <li style="margin-bottom:0.5rem;">Klasik deneme yazımı, belgelendirme ve doğrudan okuyucu kitlesine ulaştırma modelleri.</li>
+        </ul>
+      </div>
+
+      <!-- Sidebar -->
+      <aside class="scroll-trigger">
+        <div class="about-sidebar-card">
+          <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300' viewBox='0 0 300 300'><rect width='100% ' height='100% ' fill='%232a3242'/><circle cx='150' cy='110' r='60' fill='%234b5c78'/><path d='M60 250c0-40 40-50 90-50s90 10 90 50z' fill='%234b5c78'/></svg>" alt="A. Author Portresi" class="about-avatar" id="about-avatar-profile">
+          <h3 style="margin-bottom:0.5rem;">A. Author</h3>
+          <p style="font-size:0.875rem; color:var(--text-secondary); margin-bottom:1rem;">Yazar, Tarihçi & Kuantum Fiziği Teorisyeni</p>
+          <div style="font-size:0.9rem; border-top:1px solid var(--border-color); padding-top:1rem; display:flex; flex-direction:column; gap:0.5rem;">
+            <div><strong>Konum:</strong> İstanbul, Türkiye</div>
+            <div><strong>Kurum:</strong> Bağımsız Araştırmacı</div>
+            <div><strong>İletişim:</strong> <span id="about-email-display">author@publish.site</span></div>
+          </div>
+        </div>
+      </aside>
+    </div>
+
+    <!-- Timeline -->
+    <section class="about-timeline scroll-trigger">
+      <h2 class="section-title">Kariyer Kronolojisi</h2>
+      <ul class="timeline-list">
+        <li class="timeline-item">
+          <div class="timeline-year">2024 - Günümüz</div>
+          <div class="timeline-title">Bağımsız Araştırmacı & Yayıncı</div>
+          <div class="timeline-desc">Açık yayıncılık yaklaşımları üzerine çalışarak tarih araştırmalarını ve fizik inceleme yazılarını doğrudan genel ağda paylaşma.</div>
+        </li>
+        <li class="timeline-item">
+          <div class="timeline-year">2018 - 2023</div>
+          <div class="timeline-title">Saha Tarihçisi & Kubbe Yapı Uzmanı</div>
+          <div class="timeline-desc">İstanbul ve Ravenna'daki Orta Bizans dönemi kubbelerini ve tuğla örme tekniklerini yerinde inceledi ve katalogladı.</div>
+        </li>
+        <li class="timeline-item">
+          <div class="timeline-year">2012 - 2017</div>
+          <div class="timeline-title">Teorik Fizik Araştırma Görevlisi</div>
+          <div class="timeline-desc">Topolojik kuantum kapıları ve yerel gerçeklik modellerini inceleyen araştırma modüllerine katkıda bulundu. 12 akademik derleme yayınladı.</div>
+        </li>
+      </ul>
+    </section>
+
+    <!-- Awards / Achievments -->
+    <section class="scroll-trigger" style="margin-bottom:5rem;">
+      <h2 class="section-title">Ödüller & Başarılar</h2>
+      <div style="display:grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem;">
+        <div class="card" style="padding:1.5rem; display:flex; gap:1rem; align-items:flex-start;">
+          <div style="font-size:2rem; color:var(--accent);">🏆</div>
+          <div>
+            <h4 style="font-size:1.05rem; margin-bottom:0.25rem;">Ege Tarihsel Koruma Ödülü</h4>
+            <p style="font-size:0.875rem; color:var(--text-secondary);">Orta Çağ tuğla mimarisinin kataloglanmasındaki üstün başarılar için verilmiştir (2022).</p>
+          </div>
+        </div>
+        <div class="card" style="padding:1.5rem; display:flex; gap:1rem; align-items:flex-start;">
+          <div style="font-size:2rem; color:var(--accent);">🎓</div>
+          <div>
+            <h4 style="font-size:1.05rem; margin-bottom:0.25rem;">Atom Altı Bilim Elçisi Bursu</h4>
+            <p style="font-size:0.875rem; color:var(--text-secondary);">Gelişmiş termodinamik konularını sivil okuyucu çevrelerine aktarma çabaları için verilmiştir (2016).</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="about-gallery scroll-trigger">
+      <h2 class="section-title">Galeri</h2>
+      <div class="gallery-grid">
+        <div class="gallery-photo">
+          <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300' viewBox='0 0 300 300'><rect width='100%' height='100%' fill='%23384259'/><text x='50%' y='50%' fill='%237a8ca3' text-anchor='middle'>Ege Harabeleri Çalışması</text></svg>" alt="Gal-1">
+        </div>
+        <div class="gallery-photo">
+          <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300' viewBox='0 0 300 300'><rect width='100%' height='100%' fill='%23593838'/><text x='50%' y='50%' fill='%23ba8080' text-anchor='middle'>Ravenna Kütüphane Arşivi</text></svg>" alt="Gal-2">
+        </div>
+        <div class="gallery-photo">
+          <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300' viewBox='0 0 300 300'><rect width='100%' height='100%' fill='%23385955'/><text x='50%' y='50%' fill='%2377aba4' text-anchor='middle'>Kuantum Laboratuvarı Semineri</text></svg>" alt="Gal-3">
+        </div>
+        <div class="gallery-photo">
+          <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300' viewBox='0 0 300 300'><rect width='100%' height='100%' fill='%23523859'/><text x='50%' y='50%' fill='%23b78ec2' text-anchor='middle'>Çalışma Masası</text></svg>" alt="Gal-4">
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer"></footer>
+
+  <script type="module" src="/js/app.js"></script>
+</body>
+</html>

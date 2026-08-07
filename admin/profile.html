@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profil Merkezi | Yönetici Paneli</title>
+  <link rel="stylesheet" href="/css/index.css">
+  <link rel="stylesheet" href="/css/admin.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,650;1,400&display=swap" rel="stylesheet">
+</head>
+<body class="admin-body">
+
+  <div class="admin-wrapper" id="profile-deck-wrapper">
+    <!-- Sidebar -->
+    
+    <main class="admin-main">
+      <!-- Header -->
+      
+      <div class="admin-content" style="max-width:800px; display:grid; grid-template-columns: 1fr; gap:2.5rem;">
+        
+        <!-- Account Info Form -->
+        <div class="panel-card" style="padding:2.5rem;">
+          <h2 style="font-family:var(--font-serif); margin-bottom:1.5rem; font-size:1.5rem; border-bottom:1px solid var(--border-color); padding-bottom:1rem;">Yönetici Hesabı Ayarları</h2>
+          
+          <form id="profile-account-form">
+            <div class="form-row-2">
+              <div class="form-group">
+                <label class="form-label" for="profile-email">E-posta Adresi *</label>
+                <input type="email" id="profile-email" class="form-control" required readonly placeholder="admin@publish.site">
+                <span style="font-size:0.75rem; color:var(--text-tertiary);">E-posta adresinin değiştirilmesi yeniden kimlik doğrulaması gerektirir.</span>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="profile-avatar-url">Profil Resmi</label>
+                <div style="display:flex; gap:1rem; align-items:center;">
+                  <button type="button" class="btn btn-secondary btn-sm" id="btn-pick-avatar">Fotoğraf Seç</button>
+                  <input type="file" id="profile-avatar-input" style="display:none;" accept="image/*">
+                  <input type="text" id="profile-avatar-url" class="form-control" placeholder="Veyahut fotoğraf URL'si" style="flex-grow:1;">
+                </div>
+                <img id="profile-avatar-preview" src="" alt="Avatar" style="display:none; width:60px; height:60px; border-radius:50%; margin-top:0.5rem; object-fit:cover; border:1px solid var(--border-color);">
+              </div>
+            </div>
+
+            <div style="display:flex; justify-content:flex-end; gap:1rem; margin-top:2rem;">
+              <button type="submit" class="btn btn-primary" style="min-width: 140px;">Profili Kaydet</button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Security Passwords Form -->
+        <div class="panel-card" style="padding:2.5rem;">
+          <h3 style="font-family:var(--font-serif); margin-bottom:1.5rem; font-size:1.3rem; border-bottom:1px solid var(--border-color); padding-bottom:1rem;">Giriş Bilgilerini Güncelle</h3>
+          
+          <form id="profile-security-form">
+            <div class="form-group">
+              <label class="form-label" for="profile-new-password">Yeni Şifre</label>
+              <input type="password" id="profile-new-password" class="form-control" placeholder="••••••••" required minlength="6">
+            </div>
+            
+            <div class="form-group">
+              <label class="form-label" for="profile-confirm-password">Şifreyi Onayla</label>
+              <input type="password" id="profile-confirm-password" class="form-control" placeholder="••••••••" required minlength="6">
+            </div>
+
+            <div style="display:flex; justify-content:flex-end; gap:1rem; margin-top:2rem;">
+              <button type="submit" class="btn btn-primary" style="min-width: 140px;">Şifreyi Güncelle</button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Multi Factor Configuration Grid (Visual Mock Layout) -->
+        <div class="panel-card" style="padding:2.5rem; border-left: 4px solid var(--accent);">
+          <h3 style="font-family:var(--font-serif); margin-bottom:0.5rem; font-size:1.3rem;">İki Adımlı Doğrulama (2FA)</h3>
+          <p style="color:var(--text-secondary); font-size:0.875rem; margin-bottom:1.5rem;">Kimlik doğrulayıcı uygulamalardaki kod adımlarını zorunlu kılarak yönetici panelinizi güvenceye alın.</p>
+          
+          <div style="display:flex; gap:1.5rem; align-items:center; background-color:var(--bg-secondary); padding:1.5rem; border-radius:var(--radius-md);">
+            <div style="font-size:2.5rem;">📱</div>
+            <div style="flex-grow:1;">
+              <h4 style="margin-bottom:0.25rem;">Doğrulama Uygulaması Kurulumu</h4>
+              <p style="font-size:0.85rem; color:var(--text-secondary); margin-bottom:0;">Google Authenticator veya Microsoft Authenticator anahtarlarını yapılandırın.</p>
+            </div>
+            <button class="btn btn-secondary btn-sm" id="btn-toggle-mfa" type="button">2FA Kur</button>
+          </div>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- QR setup dialog -->
+  <div id="mfa-setup-modal" class="modal-overlay" style="z-index: 100003;">
+    <div class="modal-box" style="max-width:400px; text-align:center;">
+      <h3 style="font-family:var(--font-serif); margin-bottom:1rem;">Doğrulayıcı Anahtarını Tara</h3>
+      <p style="font-size:0.85rem; color:var(--text-secondary); margin-bottom:1.5rem;">Bu barkodu Google Authenticator kullanarak tarayın ve aşağıdaki doğrulama kodunu girin.</p>
+      
+      <!-- Dummy barcode qr SVG -->
+      <svg width="180" height="180" viewBox="0 0 100 100" style="margin: 0 auto 1.5rem; display:block; border: 1px solid var(--border-color); padding: 8px;" id="qr-barcode-svg">
+        <rect width="10" height="10" x="5" y="5"/>
+        <rect width="10" height="10" x="85" y="5"/>
+        <rect width="10" height="10" x="5" y="85"/>
+        <rect width="10" height="10" x="30" y="30" fill="gray"/>
+        <rect width="10" height="10" x="40" y="50"/>
+        <rect width="10" height="10" x="60" y="70" fill="gray"/>
+        <rect width="10" height="10" x="50" y="20"/>
+        <path d="M 15 45 L 45 45 L 45 65 L 15 65 Z" fill="none" stroke="black" stroke-width="2"/>
+      </svg>
+
+      <div class="form-group" style="text-align:left;">
+        <label class="form-label" for="mfa-code-input">Doğrulama kodu</label>
+        <input type="text" id="mfa-code-input" class="form-control" placeholder="123456" maxlength="6">
+      </div>
+
+      <div style="display:flex; justify-content:center; gap:1rem;">
+        <button class="btn btn-secondary" id="btn-mfa-cancel">İptal</button>
+        <button class="btn btn-primary" id="btn-mfa-confirm">Kodu Doğrula</button>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="/admin/js/profile-dashboard.js"></script>
+</body>
+</html>

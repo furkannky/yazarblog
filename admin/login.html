@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Yönetici Girişi | Güvenli Panel</title>
+  <link rel="stylesheet" href="/css/index.css">
+  <link rel="stylesheet" href="/css/admin.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,650;1,400&display=swap" rel="stylesheet">
+</head>
+<body class="admin-body">
+
+  <div class="login-wrapper">
+    <div class="login-card">
+      <div class="login-hdr">
+        <div class="logo" style="justify-content: center; margin-bottom: 0.50rem;">
+          <span class="logo-icon">A</span>
+          <span>Yayıncılık Paneli</span>
+        </div>
+        <h2>Yönetici Girişi</h2>
+      </div>
+
+      <form id="admin-login-form">
+        <div class="form-group">
+          <label class="form-label" for="login-email">E-posta Adresi</label>
+          <input type="email" id="login-email" class="form-control" placeholder="admin@publish.site" required autocomplete="username">
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="login-password">Şifre</label>
+          <input type="password" id="login-password" class="form-control" placeholder="••••••••" required autocomplete="current-password">
+        </div>
+        <button type="submit" class="btn btn-primary" style="width: 100%; margin-top:0.5rem;">Panele Giriş Yap</button>
+      </form>
+
+      <div class="login-help-text">
+        <p>Test Bilgileri:<br><strong>admin@publish.site</strong> / <strong>admin123</strong></p>
+      </div>
+    </div>
+  </div>
+
+  <script type="module">
+    import { authService } from '/js/firebase/config.js';
+    import { showToast } from '/js/components/ui.js';
+
+    // Verification Redirections: Redirect to dashboard if session exists
+    const current = authService.getCurrentUser();
+    if (current) {
+      window.location.href = "/admin/dashboard.html";
+    }
+
+    const form = document.getElementById("admin-login-form");
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const email = document.getElementById("login-email").value.trim();
+      const password = document.getElementById("login-password").value.trim();
+      
+      try {
+        await authService.login(email, password);
+        showToast("Giriş başarılı! Yönlendiriliyorsunuz...");
+        setTimeout(() => {
+          window.location.href = "/admin/dashboard.html";
+        }, 1000);
+      } catch (err) {
+        showToast(err.message, "error");
+      }
+    });
+  </script>
+</body>
+</html>
