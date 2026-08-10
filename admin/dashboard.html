@@ -45,10 +45,10 @@
           </div>
           <div class="metric-card">
             <div class="metric-details">
-              <h3>Toplam PDF</h3>
-              <div class="metric-value" id="stats-total-pdfs">0</div>
+              <h3>Toplam Haber</h3>
+              <div class="metric-value" id="stats-total-news">0</div>
             </div>
-            <div class="metric-icon">💾</div>
+            <div class="metric-icon">📢</div>
           </div>
           <div class="metric-card">
             <div class="metric-details">
@@ -59,10 +59,10 @@
           </div>
           <div class="metric-card">
             <div class="metric-details">
-              <h3>Toplam İndirme</h3>
-              <div class="metric-value" id="stats-total-downloads">0</div>
+              <h3>Bülten Abonesi</h3>
+              <div class="metric-value" id="stats-total-subscribers">0</div>
             </div>
-            <div class="metric-icon">📥</div>
+            <div class="metric-icon">✉️</div>
           </div>
         </section>
 
@@ -92,21 +92,20 @@
               </div>
             </div>
 
-            <!-- Most Downloaded PDFs -->
+            <!-- Recent News -->
             <div class="panel-card">
               <div class="panel-header">
-                <span class="panel-title">En Çok İndirilen PDF'ler</span>
+                <span class="panel-title">Son Eklenen Haberler</span>
               </div>
               <div class="data-table-wrapper" style="border:none; margin:0;">
                 <table class="data-table">
                   <thead>
                     <tr>
-                      <th>Belge</th>
-                      <th>Boyut</th>
-                      <th>İndirme</th>
+                      <th>Haber</<th>
+                      <th>Tarih</<th>
                     </tr>
                   </thead>
-                  <tbody id="dashboard-popular-pdfs">
+                  <tbody id="dashboard-recent-news">
                     <!-- Loaded dynamically -->
                   </tbody>
                 </table>
@@ -145,10 +144,10 @@
 
     // Load Overview Business stats
     async function loadStats() {
-      const [articles, books, pdfs, comments, newsletter] = await Promise.all([
+      const [articles, books, news, comments, newsletter] = await Promise.all([
         dbService.getArticles(),
         dbService.getBooks(),
-        dbService.getPdfs(),
+        dbService.getNews(10),
         dbService.getCommentsAll(),
         dbService.getNewsletterSubs()
       ]);
@@ -157,20 +156,18 @@
       const totalArticles = articles.length;
       const publishedArticles = articles.filter(a => a.status === "published").length;
       const totalBooks = books.length;
-      const totalPdfs = pdfs.length;
+      const totalNews = news.length;
       
       const pendingComments = comments.filter(c => c.status === "pending").length;
-      
-      const totalDownloads = pdfs.reduce((sum, p) => sum + (p.downloads || 0), 0) + 
-                             books.reduce((sum, b) => sum + (b.downloads || 0), 0);
+      const totalSubscribers = newsletter.length;
 
       // Populate DOM elements
       document.getElementById("stats-total-articles").textContent = totalArticles;
       document.getElementById("stats-published-articles").textContent = publishedArticles;
       document.getElementById("stats-total-books").textContent = totalBooks;
-      document.getElementById("stats-total-pdfs").textContent = totalPdfs;
+      document.getElementById("stats-total-news").textContent = totalNews;
       document.getElementById("stats-pending-comments").textContent = pendingComments;
-      document.getElementById("stats-total-downloads").textContent = totalDownloads;
+      document.getElementById("stats-total-subscribers").textContent = totalSubscribers;
 
       // Populate Most Read
       const sortedArticles = [...articles].sort((a,b) => (b.views || 0) - (a.views || 0)).slice(0, 3);
@@ -181,13 +178,12 @@
         </tr>
       `).join('');
 
-      // Populate Most Downloaded
-      const sortedPdfs = [...pdfs].sort((a,b) => (b.downloads || 0) - (a.downloads || 0)).slice(0, 3);
-      document.getElementById("dashboard-popular-pdfs").innerHTML = sortedPdfs.map(p => `
+      // Populate Recent News
+      const sortedNews = [...news].slice(0, 3);
+      document.getElementById("dashboard-recent-news").innerHTML = sortedNews.map(n => `
         <tr>
-          <td style="font-weight:500;">${p.title}</td>
-          <td>${p.fileSize}</td>
-          <td style="font-weight:600; color:var(--accent);">${p.downloads || 0}</td>
+          <td style="font-weight:500;">${n.title}</td>
+          <td style="font-weight:600; color:var(--accent);">${n.dateString}</td>
         </tr>
       `).join('');
 

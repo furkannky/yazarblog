@@ -33,7 +33,7 @@ export async function injectAdminStructure(activePage = "") {
   let pageLabel = "Kontrol Paneli";
   if (path.endsWith("/articles.html")) pageLabel = "Yazı Yönetimi";
   else if (path.endsWith("/books.html")) pageLabel = "Kitap Yönetimi";
-  else if (path.endsWith("/pdfs.html")) pageLabel = "PDF Arşivi";
+  else if (path.endsWith("/news.html")) pageLabel = "Haber & Etkinlik Yönetimi";
   else if (path.endsWith("/comments.html")) pageLabel = "Yorum Moderasyonu";
   else if (path.endsWith("/categories.html")) pageLabel = "Kategori Kataloğu";
   else if (path.endsWith("/settings.html")) pageLabel = "Site Ayarları";
@@ -59,8 +59,8 @@ export async function injectAdminStructure(activePage = "") {
         <li class="sidebar-menu-item ${activePage === 'books' ? 'active' : ''}">
           <a href="/admin/books.html">📚 Kitaplar</a>
         </li>
-        <li class="sidebar-menu-item ${activePage === 'pdfs' ? 'active' : ''}">
-          <a href="/admin/pdfs.html">📥 PDF Kütüphanesi</a>
+        <li class="sidebar-menu-item ${activePage === 'news' ? 'active' : ''}">
+          <a href="/admin/news.html">📢 Haberler</a>
         </li>
         <li class="sidebar-menu-item ${activePage === 'comments' ? 'active' : ''}">
           <a href="/admin/comments.html">💬 Yorumlar</a>

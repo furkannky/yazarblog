@@ -1,111 +1,98 @@
 /* --- DESIGN SYSTEM & CSS VARIABLES --- */
 :root {
   /* System Fonts */
-  --font-sans:
-    "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --font-serif: "Lora", "Georgia", Cambria, serif;
-  --font-mono:
-    "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  --font-sans: "Inter", "Outfit", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-serif: "Lora", "Playfair Display", "Georgia", serif;
+  --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
 
-  /* HSL Colors (Light Theme by Default) */
-  --hue: 220;
+  /* Editoral Light Theme */
+  --bg-primary: #fbfbf9; /* Ivory / Warm off-white */
+  --bg-secondary: #f4f4f2;
+  --bg-tertiary: #eaeaea;
+  --bg-surface: #ffffff;
 
-  --bg-primary: hsl(var(--hue), 20%, 98%);
-  --bg-secondary: hsl(var(--hue), 20%, 95%);
-  --bg-tertiary: hsl(var(--hue), 15%, 90%);
-  --bg-surface: hsl(0, 0%, 100%);
+  --text-primary: #222222; /* Charcoal */
+  --text-secondary: #555555;
+  --text-tertiary: #888888;
 
-  --text-primary: hsl(var(--hue), 25%, 15%);
-  --text-secondary: hsl(var(--hue), 15%, 45%);
-  --text-tertiary: hsl(var(--hue), 10%, 65%);
+  --accent: #7a1b1b; /* Dark red / Bordo */
+  --accent-light: #f7e6e6;
+  --accent-dark: #4f1111;
 
-  --accent: hsl(var(--hue), 85%, 45%);
-  --accent-light: hsl(var(--hue), 85%, 95%);
-  --accent-dark: hsl(var(--hue), 90%, 35%);
+  --gradient-primary: transparent;
+  --gradient-secondary: #fbfbf9;
+  --gradient-hero: #fbfbf9;
+  --gradient-glass: transparent;
 
-  /* Modern Gradients */
-  --gradient-primary: linear-gradient(135deg, hsl(var(--hue), 85%, 45%) 0%, hsl(var(--hue), 75%, 55%) 100%);
-  --gradient-secondary: linear-gradient(135deg, hsl(280, 70%, 55%) 0%, hsl(320, 70%, 55%) 100%);
-  --gradient-hero: linear-gradient(135deg, hsl(var(--hue), 85%, 45%) 0%, hsl(280, 70%, 55%) 50%, hsl(320, 70%, 55%) 100%);
-  --gradient-glass: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+  --glass-bg: transparent;
+  --glass-border: transparent;
+  --glass-shadow: none;
 
-  /* Glassmorphism */
-  --glass-bg: rgba(255, 255, 255, 0.7);
-  --glass-border: rgba(255, 255, 255, 0.3);
-  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-
-  --success: hsl(140, 70%, 40%);
-  --success-light: hsl(140, 70%, 95%);
-  --warning: hsl(40, 80%, 50%);
-  --warning-light: hsl(40, 80%, 95%);
-  --danger: hsl(0, 75%, 50%);
-  --danger-light: hsl(0, 75%, 95%);
+  --success: #2e6644;
+  --success-light: #e6f4ea;
+  --warning: #805b10;
+  --warning-light: #fef7e0;
+  --danger: #7a1b1b;
+  --danger-light: #f7e6e6;
 
   /* Borders & Dividers */
-  --border-color: hsl(var(--hue), 15%, 88%);
-  --border-focus: hsl(var(--hue), 85%, 65%);
+  --border-color: #dddddd;
+  --border-focus: #7a1b1b;
 
   /* Shadow Elevation */
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
-  --shadow-md:
-    0 4px 6px -1px rgba(0, 0, 0, 0.08), 0 2px 4px -1px rgba(0, 0, 0, 0.04);
-  --shadow-lg:
-    0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.03);
-  --shadow-xl:
-    0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  --shadow-sm: none;
+  --shadow-md: none;
+  --shadow-lg: none;
+  --shadow-xl: none;
 
   /* Layout Constants */
-  --radius-sm: 6px;
-  --radius-md: 10px;
-  --radius-lg: 16px;
-  --radius-round: 9999px;
-  --transition-fast: 0.15s ease;
-  --transition-normal: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-  --container-width: 1100px;
-  --container-narrow: 740px;
+  --radius-sm: 2px;
+  --radius-md: 4px;
+  --radius-lg: 8px;
+  --radius-round: 50%;
+  --transition-fast: 0.2s ease;
+  --transition-normal: 0.3s ease;
+  --container-width: 1040px;
+  --container-narrow: 720px;
 }
 
 /* --- DARK MODE SELECTORS --- */
 [data-theme="dark"] {
-  --bg-primary: hsl(var(--hue), 20%, 8%);
-  --bg-secondary: hsl(var(--hue), 15%, 12%);
-  --bg-tertiary: hsl(var(--hue), 12%, 18%);
-  --bg-surface: hsl(var(--hue), 15%, 13%);
+  --bg-primary: #0a0a09;
+  --bg-secondary: #121211;
+  --bg-tertiary: #1c1c1b;
+  --bg-surface: #10100f;
 
-  --text-primary: hsl(var(--hue), 15%, 90%);
-  --text-secondary: hsl(var(--hue), 10%, 70%);
-  --text-tertiary: hsl(var(--hue), 8%, 50%);
+  --text-primary: #eaeaea;
+  --text-secondary: #a0a0a0;
+  --text-tertiary: #666666;
 
-  --accent: hsl(var(--hue), 80%, 60%);
-  --accent-light: rgba(var(--hue), 80%, 60%, 0.1);
-  --accent-dark: hsl(var(--hue), 80%, 70%);
+  --accent: #a52a2a;
+  --accent-light: #301010;
+  --accent-dark: #d25a5a;
 
-  /* Modern Gradients - Dark Mode */
-  --gradient-primary: linear-gradient(135deg, hsl(var(--hue), 80%, 60%) 0%, hsl(var(--hue), 70%, 65%) 100%);
-  --gradient-secondary: linear-gradient(135deg, hsl(280, 60%, 60%) 0%, hsl(320, 60%, 60%) 100%);
-  --gradient-hero: linear-gradient(135deg, hsl(var(--hue), 80%, 60%) 0%, hsl(280, 60%, 60%) 50%, hsl(320, 60%, 60%) 100%);
-  --gradient-glass: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
+  --gradient-primary: transparent;
+  --gradient-secondary: #121211;
+  --gradient-hero: #0a0a09;
+  --gradient-glass: transparent;
 
-  /* Glassmorphism - Dark Mode */
-  --glass-bg: rgba(20, 25, 35, 0.7);
-  --glass-border: rgba(255, 255, 255, 0.1);
-  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  --glass-bg: transparent;
+  --glass-border: transparent;
+  --glass-shadow: none;
 
-  --success: hsl(140, 65%, 50%);
-  --success-light: rgba(140, 65%, 50%, 0.1);
-  --warning: hsl(40, 75%, 55%);
-  --warning-light: rgba(40, 75%, 55%, 0.1);
-  --danger: hsl(0, 70%, 55%);
-  --danger-light: rgba(0, 70%, 55%, 0.1);
+  --success: #438f61;
+  --success-light: #162a1f;
+  --warning: #d69e38;
+  --warning-light: #2b1f09;
+  --danger: #d25a5a;
+  --danger-light: #301010;
 
-  --border-color: hsl(var(--hue), 12%, 20%);
-  --border-focus: hsl(var(--hue), 80%, 60%);
+  --border-color: #2a2a2a;
+  --border-focus: #a52a2a;
 
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.5);
-  --shadow-md:
-    0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
-  --shadow-lg:
-    0 10px 15px -3px rgba(0, 0, 0, 0.45), 0 4px 6px -2px rgba(0, 0, 0, 0.35);
+  --shadow-sm: none;
+  --shadow-md: none;
+  --shadow-lg: none;
 }
 
 /* --- RESET & ACCESSIBILITY --- */

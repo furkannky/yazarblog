@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kitaplar | Adil Yılmayan Kitap Kataloğu</title>
-  <meta name="description" content="Adil Yılmayan tarafından Bizans tarihi mimarileri ve kuantum fiziği üzerine yazılmış kitapları inceleyin.">
+  <title>Haberler | Adil Yılmayan Yayınları</title>
+  <meta name="description" content="Yazarın etkinlik, röportaj ve yeni kitap duyurularını takip edin.">
   <link rel="stylesheet" href="/css/index.css">
   <link rel="stylesheet" href="/css/public.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -19,14 +19,18 @@
 
   <main class="container">
     <div class="about-header scroll-trigger">
-      <h1>Yayınlanmış Kitaplar</h1>
-      <p style="color: var(--text-secondary); max-width:600px; margin:0 auto;">Yayınlanan tüm kitapları inceleyin, satın alma bağlantılarına ulaşın ve örnek bölümleri okuyun.</p>
+      <h1>Haberler & Duyurular</h1>
+      <p style="color: var(--text-secondary); max-width:600px; margin:0 auto;">Yeni kitaplar, röportajlar, konferanslar ve imza günleri hakkında en güncel haberler.</p>
     </div>
 
-    <!-- Active Books Grid -->
-    <section class="books-grid scroll-trigger" id="books-catalog-list" style="margin-bottom: 5rem; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 3rem;">
-      <!-- Loaded via books.js -->
-    </section>
+    <!-- Layout Grid: Main Feed -->
+    <div style="margin-top:2rem;">
+      <section>
+        <div class="articles-grid" id="news-catalog-feed" style="grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 3rem;">
+          <!-- Loaded via news.js -->
+        </div>
+      </section>
+    </div>
   </main>
 
   <footer class="site-footer"></footer>

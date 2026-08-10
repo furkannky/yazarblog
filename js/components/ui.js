@@ -47,15 +47,14 @@ export async function injectHeader(activePage = "") {
   header.innerHTML = `
     <div class="container nav-container">
       <a href="/index.html" class="logo">
-        <span class="logo-icon">A</span>
-        <span>${logoText}</span>
+        ${logoText}
       </a>
       <ul class="nav-links">
         <li><a href="/index.html" class="${activePage === 'home' ? 'active' : ''}">Ana Sayfa</a></li>
-        <li><a href="/about.html" class="${activePage === 'about' ? 'active' : ''}">Hakkımda</a></li>
-        <li><a href="/articles.html" class="${activePage === 'articles' ? 'active' : ''}">Yazılar</a></li>
         <li><a href="/books.html" class="${activePage === 'books' ? 'active' : ''}">Kitaplar</a></li>
-        <li><a href="/pdf-library.html" class="${activePage === 'pdfs' ? 'active' : ''}">PDF Kütüphanesi</a></li>
+        <li><a href="/articles.html" class="${activePage === 'articles' ? 'active' : ''}">Yazılar</a></li>
+        <li><a href="/news.html" class="${activePage === 'news' ? 'active' : ''}">Haberler</a></li>
+        <li><a href="/about.html" class="${activePage === 'about' ? 'active' : ''}">Hakkında</a></li>
         <li><a href="/contact.html" class="${activePage === 'contact' ? 'active' : ''}">İletişim</a></li>
       </ul>
       <div class="nav-actions">
@@ -144,8 +143,7 @@ export async function injectFooter() {
       <div class="footer-grid">
         <div class="footer-col">
           <a href="/index.html" class="logo">
-            <span class="logo-icon">A</span>
-            <span>${logoText}</span>
+            ${logoText}
           </a>
           <p style="margin-top: 1rem; color: var(--text-secondary); font-size: 0.9rem;">
             Tarih araştırmaları, kuantum dünyasının sınırları ve modern edebiyata dair derinlemesine denemeler içeren yayın portalı.
@@ -168,7 +166,7 @@ export async function injectFooter() {
           <h4>Kaynaklar</h4>
           <ul>
             <li><a href="/books.html">Kitaplar</a></li>
-            <li><a href="/pdf-library.html">PDF Arşivi</a></li>
+            <li><a href="/news.html">Haberler</a></li>
             <li><a href="/contact.html">İletişim</a></li>
           </ul>
         </div>

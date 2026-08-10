@@ -7,7 +7,7 @@ import { initHomePage } from './pages/home.js';
 import { initArticlesPage } from './pages/articles.js';
 import { initArticlePage } from './pages/article.js';
 import { initBooksPage } from './pages/books.js';
-import { initPdfsPage } from './pages/pdfs.js';
+import { initNewsPage } from './pages/news.js';
 import { initContactPage } from './pages/contact.js';
 
 document.addEventListener("DOMContentLoaded", async () => {
@@ -25,8 +25,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     activeTab = "articles"; // Share active link state
   } else if (path.endsWith("/books.html")) {
     activeTab = "books";
-  } else if (path.endsWith("/pdf-library.html")) {
-    activeTab = "pdfs";
+  } else if (path.endsWith("/news.html")) {
+    activeTab = "news";
   } else if (path.endsWith("/contact.html")) {
     activeTab = "contact";
   }
@@ -48,8 +48,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     await initArticlePage();
   } else if (activeTab === "books") {
     await initBooksPage();
-  } else if (activeTab === "pdfs") {
-    await initPdfsPage();
+  } else if (activeTab === "news") {
+    await initNewsPage();
   } else if (activeTab === "contact") {
     await initContactPage();
   }

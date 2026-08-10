@@ -425,86 +425,64 @@ export const dbService = {
     return dbService.saveSettings(data);
   },
 
-  // PDFs Core API
-  getPdfs: async () => {
+  // News Core API
+  getNews: async (limitCount = 100) => {
     try {
       if (isUsingMock || !firebaseLoaded) {
-        return mockDBInstance.list("pdfs");
+        return mockDBInstance.list("news").slice(0, limitCount);
       }
-      const { collection, getDocs } = await import("https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js");
-      const snapshot = await getDocs(collection(realDb, "pdfs"));
+      const { collection, getDocs, query, orderBy, limit } = await import("https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js");
+      const q = query(collection(realDb, "news"), orderBy("dateString", "desc"), limit(limitCount));
+      const snapshot = await getDocs(q);
       return snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
     } catch (err) {
-      console.warn("Firestore getPdfs failed, falling back to mock:", err);
-      return mockDBInstance.list("pdfs");
+      console.warn("Firestore getNews failed, falling back to mock:", err);
+      return mockDBInstance.list("news").slice(0, limitCount);
     }
   },
 
-  createPdf: async (data) => {
+  createNews: async (data) => {
     try {
       if (isUsingMock || !firebaseLoaded) {
-        return mockDBInstance.create("pdfs", { ...data, downloads: 0, uploadDate: new Date().toISOString().split('T')[0] });
+        return mockDBInstance.create("news", data);
       }
       const { collection, addDoc } = await import("https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js");
-      const docRef = await addDoc(collection(realDb, "pdfs"), { ...data, downloads: 0, uploadDate: new Date().toISOString().split('T')[0] });
+      const docRef = await addDoc(collection(realDb, "news"), data);
       return { id: docRef.id, ...data };
     } catch (err) {
-      console.warn("Firestore createPdf failed, falling back to local:", err);
-      return mockDBInstance.create("pdfs", { ...data, downloads: 0, uploadDate: new Date().toISOString().split('T')[0] });
+      console.warn("Firestore createNews failed, falling back to local:", err);
+      return mockDBInstance.create("news", data);
     }
   },
 
-  updatePdf: async (id, data) => {
+  updateNews: async (id, data) => {
     try {
       if (isUsingMock || !firebaseLoaded) {
-        return mockDBInstance.update("pdfs", id, data);
+        return mockDBInstance.update("news", id, data);
       }
       const { doc, updateDoc } = await import("https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js");
-      const docRef = doc(realDb, "pdfs", id);
+      const docRef = doc(realDb, "news", id);
       await updateDoc(docRef, data);
       return { id, ...data };
     } catch (err) {
-      console.warn("Firestore updatePdf failed, falling back to local:", err);
-      return mockDBInstance.update("pdfs", id, data);
+      console.warn("Firestore updateNews failed, falling back to local:", err);
+      return mockDBInstance.update("news", id, data);
     }
   },
 
-  deletePdf: async (id) => {
+  deleteNews: async (id) => {
     try {
       if (isUsingMock || !firebaseLoaded) {
-        return mockDBInstance.delete("pdfs", id);
+        return mockDBInstance.delete("news", id);
       }
       const { doc, deleteDoc } = await import("https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js");
-      const docRef = doc(realDb, "pdfs", id);
+      const docRef = doc(realDb, "news", id);
       await deleteDoc(docRef);
       return true;
     } catch (err) {
-      console.warn("Firestore deletePdf failed, falling back to local:", err);
-      return mockDBInstance.delete("pdfs", id);
+      console.warn("Firestore deleteNews failed, falling back to local:", err);
+      return mockDBInstance.delete("news", id);
     }
-  },
-
-  incrementPdfDownloads: async (id) => {
-    try {
-      const list = await dbService.getPdfs();
-      const pdf = list.find(p => p.id === id);
-      if (pdf) {
-        const downloads = (pdf.downloads || 0) + 1;
-        await dbService.updatePdf(id, { downloads });
-        // Log in analytics collection 'downloads'
-        const log = { pdfId: id, timestamp: new Date().toISOString() };
-        if (isUsingMock || !firebaseLoaded) {
-          mockDBInstance.create("downloads", log);
-        } else {
-          const { collection, addDoc } = await import("https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js");
-          await addDoc(collection(realDb, "downloads"), log);
-        }
-        return downloads;
-      }
-    } catch (err) {
-      console.warn("incrementPdfDownloads failed:", err);
-    }
-    return 0;
   },
 
   // Newsletter Subscriptions

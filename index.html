@@ -1,88 +1,220 @@
 <!doctype html>
-<html lang="en">
+<html lang="tr">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>A. Author | Yazar & Akademisyen Portfolyosu</title>
+    <title>name | Yazar & Akademisyen Portfolyosu</title>
     <meta
       name="description"
-      content="A. Author resmi web sitesi. Güncel yazılar, kitaplar, araştırma makaleleri ve bülten güncellemeleri."
+      content="name resmi web sitesi. Güncel yazılar, kitaplar, araştırma makaleleri ve bülten güncellemeleri."
     />
+    
+    <!-- CSS Stil Dosyalarımızın Bağlantıları (Sitenin görselliğini sağlar) -->
     <link rel="stylesheet" href="/css/index.css" />
     <link rel="stylesheet" href="/css/public.css" />
-    <!-- Google Fonts: Inter & Lora -->
+    
+    <!-- Google Fonts: Inter ve Lora (Yazı tiplerini internetten çeker) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,650;1,400&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@300;400;500;600&family=Lora:ital,wght@0,400;1,400&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap"
       rel="stylesheet"
     />
-    <!-- Lucide Icons -->
+    
+    <!-- Lucide Icons: Sitedeki küçük simgeleri (ikonları) çeker -->
     <script src="https://unpkg.com/lucide@latest"></script>
   </head>
-  <body>
-    <!-- Sticky Site Header -->
-    <header class="site-header"></header>
+  <body id="top">
+    <!-- Sitenin En Üstündeki Menü Çubuğu (Header) -->
+    <header class="site-header">
+      <div class="container nav-container">
+        <!-- Sol Üstteki Logo Alanı -->
+        <a href="/index.html" class="logo">
+          Adil Yılmayan
+        </a>
+        <!-- Menü Linkleri -->
+        <ul class="nav-links">
+          <li><a href="/index.html" class="active">Ana Sayfa</a></li>
+          <li><a href="/books.html" class="">Kitaplar</a></li>
+          <li><a href="/articles.html" class="">Yazılar</a></li>
+          <li><a href="/news.html" class="">Haberler</a></li>
+          <li><a href="/about.html" class="">Hakkında</a></li>
+          <li><a href="/contact.html" class="">İletişim</a></li>
+        </ul>
+        <div class="nav-actions">
+          <!-- Karanlık Mod Geçişi / Menü İkonları -->
+          <button class="theme-toggle-btn" aria-label="Toggle Theme">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+          </button>
+          <button class="menu-toggle" aria-label="Toggle Menu">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+          </button>
+        </div>
+      </div>
+    </header>
 
+    <!-- Sitenin Ana İçerik Gövdesi Burada Başlıyor -->
     <main>
-      <!-- Hero Banner Section -->
-      <section class="hero scroll-trigger">
-        <div class="container">
-          <h1 class="hero-title" id="hero-title-display">
-            Bilim, Tarih ve Sanat Üzerine Düşünceler
-          </h1>
-          <p class="hero-subtitle" id="hero-subtitle-display">
-            Yazar tarafından doğrudan yayınlanan denemeler, tarihi çalışmalar ve teknik kitaplar.
-          </p>
-          <a href="/articles.html" class="btn btn-primary">Okumaya Başla</a>
+      
+      <!-- Editorial Hero Section -->
+      <section class="editorial-hero">
+        <div class="container editorial-hero-container">
+          <div class="editorial-hero-content scroll-trigger from-left">
+            <h1 class="hero-title" id="hero-title-display">
+              Adil Yılmayan
+            </h1>
+            <h2 class="hero-subtitle-sub">Araştırmacı, Sosyolog & Yazar</h2>
+            <p class="hero-subtitle" id="hero-subtitle-display">
+              Yazar tarafından doğrudan yayınlanan denemeler, tarihi çalışmalar ve teknik kitaplar. Fikirlerin izinde bir yolculuk.
+            </p>
+            <div class="hero-actions">
+              <a href="/books.html" class="btn btn-primary btn-lg">Kitapları Keşfet</a>
+              <a href="/about.html" class="btn btn-secondary btn-lg">Hakkında</a>
+            </div>
+          </div>
+          <div class="editorial-hero-image scroll-trigger from-right">
+            <!-- Author Portrait Placeholder -->
+            <div class="portrait-container">
+              <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='600' height='800' viewBox='0 0 600 800'><rect width='600' height='800' fill='%23e5e5e5'/><text x='300' y='400' font-family='sans-serif' font-size='20' fill='%23666666' text-anchor='middle'>Yazar Portresi (600x800)</text></svg>" alt="Adil Yılmayan Portre" class="author-portrait">
+            </div>
+          </div>
         </div>
       </section>
 
-      <!-- Featured Article Highlight -->
+      <!-- Öne Çıkan Tek Bir Makalenin (Yazının) Gösterileceği Alan -->
+      <!-- BURADAKİ HTML KODLARI İÇİNDEN YAZININ ADINI VE BİLGİLERİNİ DEĞİŞTİREBİLİRSİNİZ -->
       <section class="container scroll-trigger" style="margin-top: 2rem">
         <h2 class="section-title">Öne Çıkan Makale</h2>
         <div id="featured-article-root">
-          <!-- Injected via home.js (Skeleton loader displays here first) -->
+          <div class="featured-article-container">
+            <div class="featured-article-cover">
+              <!-- Makalenin resmi buradadır -->
+              <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='800' height='450' viewBox='0 0 800 450'><defs><linearGradient id='g1' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' style='stop-color:%23495874;stop-opacity:1' /><stop offset='100%' style='stop-color:%23182030;stop-opacity:1' /></linearGradient></defs><rect width='100%' height='100%' fill='url(%23g1)'/><text x='50%' y='45%' font-family='Georgia, serif' font-size='32' fill='%23ffffff' text-anchor='middle'>Yazarlık Sanatı</text><text x='50%' y='55%' font-family='sans-serif' font-size='16' fill='%23a0aec0' letter-spacing='2' text-anchor='middle'>DIJITAL YAYINCILIK GORUSLERI</text></svg>" alt="Dijital Çağda Yazarlık Sanatı ve Okur İlişkisi">
+            </div>
+            <div class="featured-article-details">
+              <span class="article-category-badge">Öne Çıkan</span>
+              <!-- Makalenin başlığı -->
+              <h3 class="featured-article-title"><a href="/article.html?slug=dijital-cagda-yazarlik-sanati">Dijital Çağda Yazarlık Sanatı ve Okur İlişkisi</a></h3>
+              <!-- Makalenin kısa özeti -->
+              <p style="color:var(--text-secondary); margin-bottom: 2rem; line-height: 1.6;">Modern dijital araçların ve yeni nesil dağıtım kanallarının, yazar ile okuyucu arasındaki geleneksel bağı nasıl yeniden şekillendirdiğini inceleyin.</p>
+              <!-- Makalenin yayın tarihi ve okuma süresi -->
+              <div style="display:flex; justify-content:space-between; align-items:center; font-size:0.85rem; color:var(--text-tertiary); width:100%; border-top: 1px solid var(--border-color); padding-top: 1rem;">
+                <span>01 Ağustos 2026</span>
+                <span>3 dk okuma • 145 görüntülenme</span>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
-      <!-- Latest Articles Grid -->
+      <!-- Son Eklenen Yazıların (Articles) Izgara Şeklinde Sıralandığı Alan -->
+      <!-- DİĞER YAZILARINIZI BURADAN EKLEYİP ÇIKARABİLİRSİNİZ -->
       <section class="container scroll-trigger" style="margin-top: 4rem">
         <h2 class="section-title">
           <span>Son Yazılar</span>
           <a href="/articles.html" class="section-link">Tümünü Gör &rarr;</a>
         </h2>
+        
         <div class="articles-grid" id="latest-articles-root">
-          <!-- Injected via home.js -->
+          <!-- 1. Küçük Makale Kutusu -->
+          <article class="card article-card">
+            <div class="article-card-cover">
+              <a href="/article.html?slug=kayip-baskentler-bizans-mimarisi"><img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='800' height='450' viewBox='0 0 800 450'><defs><linearGradient id='g2' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' style='stop-color:%238c3a3a;stop-opacity:1' /><stop offset='100%' style='stop-color:%23321515;stop-opacity:1' /></linearGradient></defs><rect width='100%' height='100%' fill='url(%23g2)'/><text x='50%' y='45%' font-family='Georgia, serif' font-size='32' fill='%23ffffff' text-anchor='middle'>Kayıp Başkentler</text><text x='50%' y='55%' font-family='sans-serif' font-size='16' fill='%23ff9999' letter-spacing='2' text-anchor='middle'>BIZANS MIMARISI INCELEMESI</text></svg>" alt="Kayıp Başkentler: Doğu Akdeniz ve Bizans Mimarisi"></a>
+            </div>
+            <div class="article-card-content">
+              <div class="article-card-meta">
+                <span class="article-card-category">Makale</span>
+                <span>•</span>
+                <span>03 Ağustos 2026</span>
+              </div>
+              <h3 class="article-card-title"><a href="/article.html?slug=kayip-baskentler-bizans-mimarisi">Kayıp Başkentler: Doğu Akdeniz ve Bizans Mimarisi</a></h3>
+              <p class="article-card-summary">Orta Çağ Bizans mühendisliğinin izini sürerek, Konstantinopolis yapılarından geç dönem kubbelerine uzanan mimari dönüşümün derinlemesine analizi.</p>
+              <div class="article-card-footer">
+                <span>5 dk okuma</span>
+                <span>98 okuma</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- 2. Küçük Makale Kutusu -->
+          <article class="card article-card">
+            <div class="article-card-cover">
+              <a href="/article.html?slug=kuantum-dolanikligi-yerellik-sorunu"><img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='800' height='450' viewBox='0 0 800 450'><defs><linearGradient id='g3' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' style='stop-color:%232a5a67;stop-opacity:1' /><stop offset='100%' style='stop-color:%2311262d;stop-opacity:1' /></linearGradient></defs><rect width='100%' height='100%' fill='url(%23g3)'/><text x='50%' y='45%' font-family='Georgia, serif' font-size='32' fill='%23ffffff' text-anchor='middle'>Kuantum Dolanıklığı</text><text x='50%' y='55%' font-family='sans-serif' font-size='16' fill='%238be2ef' letter-spacing='2' text-anchor='middle'>KUANTUM FIZIGI VE FELSEFE</text></svg>" alt="Kuantum Dolanıklığı ve Doğa Felsefesinde Yerellik Sorunu"></a>
+            </div>
+            <div class="article-card-content">
+              <div class="article-card-meta">
+                <span class="article-card-category">Makale</span>
+                <span>•</span>
+                <span>05 Ağustos 2026</span>
+              </div>
+              <h3 class="article-card-title"><a href="/article.html?slug=kuantum-dolanikligi-yerellik-sorunu">Kuantum Dolanıklığı ve Doğa Felsefesinde Yerellik Sorunu</a></h3>
+              <p class="article-card-summary">Einstein'ın 'uzaktan ürkütücü eylem' olarak adlandırdığı kuantum dolanıklığı kavramını ve yerellik ilkesini çürüten modern fizik deneylerini keşfedin.</p>
+              <div class="article-card-footer">
+                <span>4 dk okuma</span>
+                <span>220 okuma</span>
+              </div>
+            </div>
+          </article>
         </div>
       </section>
 
-      <!-- Featured Books Grid -->
+      <!-- Öne Çıkan Kitaplarınızın Sıralandığı Alan -->
+      <!-- KİTAPLARINIZIN BİLGİLERİNİ VE METİNLERİNİ BURADAN DEĞİŞTİREBİLİRSİNİZ -->
       <section class="container scroll-trigger" style="margin-top: 4rem">
         <h2 class="section-title">
           <span>Öne Çıkan Kitaplar</span>
           <a href="/books.html" class="section-link">Tüm Kitaplar &rarr;</a>
         </h2>
+        
         <div class="books-grid" id="featured-books-root">
-          <!-- Injected via home.js -->
+          <!-- 1. Kitap Kutusu -->
+          <div class="book-card">
+            <div class="book-card-cover-container">
+              <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='500' viewBox='0 0 400 500'><defs><linearGradient id='b1' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' style='stop-color:%238c3a3a;stop-opacity:1' /><stop offset='100%' style='stop-color:%23321515;stop-opacity:1' /></linearGradient></defs><rect width='100%' height='100%' fill='url(%23b1)'/><rect x='20' y='20' width='360' height='460' fill='none' stroke='%23e2a2a2' stroke-width='2'/><text x='50%' y='40%' font-family='Georgia, serif' font-size='24' fill='%23ffffff' text-anchor='middle'>ZAMANIN IZI</text><text x='50%' y='48%' font-family='sans-serif' font-size='12' fill='%23ffb3b3' letter-spacing='2' text-anchor='middle'>BYZANTIUM STUDIES</text><text x='50%' y='85%' font-family='Georgia' font-style='italic' font-size='14' fill='%23ffffff' text-anchor='middle'>name</text></svg>" alt="Zamanın İzleri: Doğu Akdeniz Notları" class="book-card-cover">
+            </div>
+            <div class="book-card-info">
+              <h3 class="book-card-title">Zamanın İzleri: Doğu Akdeniz Notları</h3>
+              <span class="book-card-author">name</span>
+              <p class="book-card-description">Antik kent planlaması, Akdeniz ticaret yolları ve İmparatorluk saray yapılarının sosyo-kültürel analizini içeren geniş kapsamlı bir tarih ve kültür araştırması.</p>
+              <div class="book-card-actions">
+                <a href="https://amazon.com.tr" target="_blank" class="btn btn-secondary btn-sm">Amazon'dan Al</a>
+                <a href="/books.html" class="btn btn-primary btn-sm">Detaylar</a>
+              </div>
+            </div>
+          </div>
+          <!-- 2. Kitap Kutusu -->
+          <div class="book-card">
+            <div class="book-card-cover-container">
+              <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='500' viewBox='0 0 400 500'><defs><linearGradient id='b2' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' style='stop-color:%232a5a67;stop-opacity:1' /><stop offset='100%' style='stop-color:%2311262d;stop-opacity:1' /></linearGradient></defs><rect width='100%' height='100%' fill='url(%23b2)'/><rect x='20' y='20' width='360' height='460' fill='none' stroke='%238be2ef' stroke-width='2'/><text x='50%' y='40%' font-family='Georgia, serif' font-size='24' fill='%23ffffff' text-anchor='middle'>KUANTUM UFKU</text><text x='50%' y='48%' font-family='sans-serif' font-size='12' fill='%238be2ef' letter-spacing='2' text-anchor='middle'>SUBATOMIC PHYSICS</text><text x='50%' y='85%' font-family='Georgia' font-style='italic' font-size='14' fill='%23ffffff' text-anchor='middle'>name</text></svg>" alt="Kuantum Ufku ve Yeni Gerçeklik" class="book-card-cover">
+            </div>
+            <div class="book-card-info">
+              <h3 class="book-card-title">Kuantum Ufku ve Yeni Gerçeklik</h3>
+              <span class="book-card-author">name</span>
+              <p class="book-card-description">Teorik kuantum mekaniğinin zorlu denklemlerini gündelik hayattan analojilerle açıklayan, modern bilgisayar mimarilerini yeniden tanımlayan popüler bilim rehberi.</p>
+              <div class="book-card-actions">
+                <a href="https://amazon.com.tr" target="_blank" class="btn btn-secondary btn-sm">Amazon'dan Al</a>
+                <a href="/books.html" class="btn btn-primary btn-sm">Detaylar</a>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
-      <!-- Author Profile Summary -->
+      <!-- Yazar Özeti ve Profilinin Gösterildiği Alan (Hakkımda Kısayolu) -->
       <section class="container scroll-trigger">
         <div class="author-intro">
+          <!-- Profil kutucuğu: Şu an içinde "Görsel Bekleniyor" yazan boş gri alan kodu içerir. -->
           <img
-            src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'><rect width='100' height='100' fill='%234a5568'/><circle cx='50' cy='35' r='20' fill='%23cbd5e0'/><path d='M20 80c0-15 15-20 30-20s30 5 30 20z' fill='%23cbd5e0'/></svg>"
-            alt="A. Author Avatar"
+            src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23f1f5f9'/><text x='50' y='50' font-family='sans-serif' font-size='10' fill='%2394a3b8' text-anchor='middle' dominant-baseline='middle'>Görsel</text><text x='50' y='65' font-family='sans-serif' font-size='10' fill='%2394a3b8' text-anchor='middle' dominant-baseline='middle'>Bekleniyor</text></svg>"
+            alt="Adil Yılmayan Avatar"
             class="author-intro-avatar"
             id="about-avatar-display"
           />
           <div class="author-intro-details">
             <h2>Yazar Hakkında</h2>
+            <!-- Sizin için yazdığımız biyografi özet metni buradadır -->
             <p id="about-intro-text">
-              A. Author; deneme yazarı, tarih araştırmacısı ve kuantum donanım teorisyenidir.
-              Ege Orta Çağ mimarisini haritalandırma ve atom altı istatistikleri topluma yönelik
-              kitaplara dönüştürme konusunda on yılı aşkın araştırma geçmişine sahiptir.
+              1957 Şanlıurfa doğumlu olan Adil Yılmayan, eğitim, idari yöneticilik, yayıncılık ve sağlık alanlarında onlarca yıllık tecrübeye sahip bir araştırmacı, sosyolog ve yazardır. Kamu yönetiminden ilahiyata kadar çok yönlü akademik geçmişi ve yerel basındaki uzun yıllara dayanan kalemiyle fikirlerini okurlarıyla buluşturmaya devam etmektedir.
             </p>
             <a href="/about.html" class="section-link"
               >Biyografinin Tamamını Oku &rarr;</a
@@ -91,7 +223,7 @@
         </div>
       </section>
 
-      <!-- Newsletter Registration Section -->
+      <!-- Email Abonelik ve Bülten Formu Alanı -->
       <section class="container scroll-trigger">
         <div class="newsletter-section">
           <h2 class="newsletter-title">Bültene Abone Olun</h2>
@@ -119,10 +251,57 @@
       </section>
     </main>
 
-    <!-- Site Footer -->
-    <footer class="site-footer"></footer>
+    <!-- Sitenin En Alt Kısmı (Footer) - Sabit Statik Kodları -->
+    <!-- ALT BİLGİ KAYNAKLARI BURADAN DÜZENLENEBİLİR -->
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-col">
+            <a href="/index.html" class="logo">
+              Adil Yılmayan
+            </a>
+            <p style="margin-top: 1rem; color: var(--text-secondary); font-size: 0.9rem;">
+              Tarih araştırmaları, kuantum dünyasının sınırları ve modern edebiyata dair derinlemesine denemeler içeren yayın portalı.
+            </p>
+            <div class="footer-socials">
+              <a href="https://twitter.com" target="_blank" aria-label="Twitter"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/></svg></a>
+              <a href="https://medium.com" target="_blank" aria-label="Medium"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 12c-2.2 0-4-3.58-4-8s1.8-8 4-8 4 3.58 4 8-1.8 8-4 8zM20 12c-1.1 0-2-3.13-2-7s.9-7 2-7 2 3.13 2 7-.9 7-2 7zM4 12c.55 0 1-2.68 1-6s-.45-6-1-6-1 2.68-1 6 .45 6 1 6z"/></svg></a>
+              <a href="https://github.com" target="_blank" aria-label="GitHub"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/></svg></a>
+            </div>
+          </div>
+          <div class="footer-col">
+            <h4>Keşfet</h4>
+            <ul>
+              <li><a href="/index.html">Ana Sayfa</a></li>
+              <li><a href="/about.html">Yazar Hakkında</a></li>
+              <li><a href="/articles.html">Bütün Yazılar</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Kaynaklar</h4>
+            <ul>
+              <li><a href="/books.html">Kitaplar</a></li>
+              <li><a href="/pdf-library.html">PDF Arşivi</a></li>
+              <li><a href="/contact.html">İletişim</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>İletişim</h4>
+            <ul>
+              <li><a href="mailto:iletisim@adilyilmayan.com">iletisim@adilyilmayan.com</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <span>© 2026 Adil Yılmayan. Tüm hakları saklıdır.</span>
+          <a href="#top" style="font-size: 0.85rem; display: inline-flex; align-items: center; gap: 0.25rem;">
+            Yukarı Dön &uarr;
+          </a>
+        </div>
+      </div>
+    </footer>
 
-    <!-- Application Root Initializer -->
+    <!-- SADECE ANİMASYON VE ARAMA İÇİN APP.JS. ARTIK İÇERİKLERİ EZMİYOR -->
     <script type="module" src="/js/app.js"></script>
   </body>
 </html>
