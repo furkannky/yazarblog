@@ -1,10 +1,10 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Yazılar | Adil Yılmayan Yayınları</title>
-  <meta name="description" content="Kuantum mekaniği, Bizans tarihi, bilim, edebiyat ve dijital yayıncılık üzerine deneme ve makaleleri okuyun.">
+  <title>YazÄ±lar | Adil YÄ±lmayan YayÄ±nlarÄ±</title>
+  <meta name="description" content="Kuantum mekaniÄŸi, Bizans tarihi, bilim, edebiyat ve dijital yayÄ±ncÄ±lÄ±k Ã¼zerine deneme ve makaleleri okuyun.">
   <link rel="stylesheet" href="/css/index.css">
   <link rel="stylesheet" href="/css/public.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -15,25 +15,45 @@
 </head>
 <body>
 
-  <header class="site-header"></header>
+    <header class="site-header">
+    <div class="container nav-container">
+      <a href="/index.html" class="logo">Adil Yılmayan</a>
+      <ul class="nav-links">
+        <li><a href="/index.html">Ana Sayfa</a></li>
+        <li><a href="/books.html">Kitaplar</a></li>
+        <li><a href="/articles.html">Yazılar</a></li>
+        <li><a href="/news.html">Haberler</a></li>
+        <li><a href="/about.html">Hakkında</a></li>
+        <li><a href="/contact.html">İletişim</a></li>
+      </ul>
+      <div class="nav-actions">
+        <button class="theme-toggle-btn" aria-label="Toggle Theme">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+        </button>
+        <button class="menu-toggle" aria-label="Toggle Menu">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
 
   <main class="container">
     <div class="about-header scroll-trigger">
       <h1>Makaleler & Denemeler</h1>
-      <p style="color: var(--text-secondary); max-width:600px; margin:0 auto;">Tarih, fizik, edebiyat ve yayıncılık üzerine yazıları filtreleyin veya arama yapın.</p>
+      <p style="color: var(--text-secondary); max-width:600px; margin:0 auto;">Tarih, fizik, edebiyat ve yayÄ±ncÄ±lÄ±k Ã¼zerine yazÄ±larÄ± filtreleyin veya arama yapÄ±n.</p>
     </div>
 
     <!-- Category Filter Bar and Inline Search Box -->
     <div class="filter-bar scroll-trigger">
       <ul class="categories-list" id="category-filter-list">
-        <li><a href="#" class="active" data-id="all">Tüm Konular</a></li>
+        <li><a href="#" class="active" data-id="all">TÃ¼m Konular</a></li>
         <!-- Dynamically populated categories -->
       </ul>
 
       <!-- Filter/Search within page -->
       <div class="search-box-container">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--text-tertiary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-        <input type="text" id="article-catalog-search" placeholder="Yazılarda ara...">
+        <input type="text" id="article-catalog-search" placeholder="YazÄ±larda ara...">
       </div>
     </div>
 
@@ -54,7 +74,7 @@
 
       <!-- Featured Sidebar Column -->
       <aside class="scroll-trigger" style="position:sticky; top: 100px; height: fit-content;">
-        <h3 style="font-family:var(--font-serif); margin-bottom:1.5rem; border-bottom:1px solid var(--border-color); padding-bottom: 0.5rem;">Popüler Yazılar</h3>
+        <h3 style="font-family:var(--font-serif); margin-bottom:1.5rem; border-bottom:1px solid var(--border-color); padding-bottom: 0.5rem;">PopÃ¼ler YazÄ±lar</h3>
         <div style="display:flex; flex-direction:column; gap:1.5rem;" id="popular-articles-sidebar">
           <!-- Injected via catalog pages -->
         </div>
@@ -63,8 +83,43 @@
     </div>
   </main>
 
-  <footer class="site-footer"></footer>
+    <footer class="site-footer">
+    <div class="container footer-container">
+      <div class="footer-brand">
+        <h3 class="footer-logo">Adil Yılmayan</h3>
+        <p class="footer-tagline">Araştırmacı, Sosyolog & Yazar</p>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h4>İçerikler</h4>
+          <ul>
+            <li><a href="/books.html">Kitaplar</a></li>
+            <li><a href="/articles.html">Yazılar</a></li>
+            <li><a href="/news.html">Haberler</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Bağlantılar</h4>
+          <ul>
+            <li><a href="/about.html">Hakkında</a></li>
+            <li><a href="/contact.html">İletişim</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Sosyal Medya</h4>
+          <ul class="social-list">
+            <li><a href="#" target="_blank">Twitter</a></li>
+            <li><a href="#" target="_blank">Instagram</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p id="footer-copyright">© 2026 Adil Yılmayan. Tüm hakları saklıdır.</p>
+    </div>
+  </footer>
 
   <script type="module" src="/js/app.js"></script>
 </body>
 </html>
+
