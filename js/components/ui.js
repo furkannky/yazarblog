@@ -42,7 +42,8 @@ export async function injectHeader(activePage = "") {
   if (!header) return;
 
   const settingsList = await dbService.getSettings();
-  const logoText = settingsList.logoText || "A. Author";
+  let logoText = settingsList.logoText || "Adil Yılmayan";
+  if (logoText === "name" || logoText === "A. Author") logoText = "Adil Yılmayan";
 
   header.innerHTML = `
     <div class="container nav-container">
@@ -134,7 +135,8 @@ export async function injectFooter() {
   if (!footer) return;
 
   const settingsList = await dbService.getSettings();
-  const logoText = settingsList.logoText || "A. Author";
+  let logoText = settingsList.logoText || "Adil Yılmayan";
+  if (logoText === "name" || logoText === "A. Author") logoText = "Adil Yılmayan";
   const footerText = settingsList.footerText || `© ${new Date().getFullYear()} ${logoText}. Tüm hakları saklıdır.`;
   const social = settingsList.socialLinks || {};
 

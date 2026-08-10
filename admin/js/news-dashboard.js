@@ -1,138 +1,77 @@
-// PDF collection CRUD management (list, metadata config, storage upload hook, category selection sync)
 import { injectAdminStructure } from './admin-layout.js';
 import { dbService, storageService } from '/js/firebase/config.js';
 import { showToast } from '/js/components/ui.js';
-import { formatDate } from '/js/utils.js';
 
-let pdfs = [];
-let categories = [];
+let newsItems = [];
 
-// Initialize Layout & Guard
-await injectAdminStructure("pdfs");
+// Initialize Layout
+await injectAdminStructure("news");
 
-// Selectors
-const listPanel = document.getElementById("pdfs-list-panel");
-const composePanel = document.getElementById("pdf-compose-panel");
-const tableBody = document.getElementById("pdfs-table-body");
-const composeTitle = document.getElementById("pdf-compose-title");
-const pdfForm = document.getElementById("pdf-form");
+const listPanel = document.getElementById("news-list-panel");
+const composePanel = document.getElementById("news-compose-panel");
+const tableBody = document.getElementById("news-table-body");
+const composeTitle = document.getElementById("news-compose-title");
+const newsForm = document.getElementById("news-form");
 
-const btnCreate = document.getElementById("btn-create-pdf");
-const btnCancel1 = document.getElementById("btn-cancel-pdf-compose");
-const btnCancel2 = document.getElementById("btn-cancel-pdf-compose-2");
-
-const fileInput = document.getElementById("pdf-file-input");
-const btnPickFile = document.getElementById("btn-pick-pdf-file");
-const fileUrlInput = document.getElementById("pdf-file-url");
-const fileSizeInput = document.getElementById("pdf-file-size");
+const btnCreate = document.getElementById("btn-create-news");
+const btnCancel1 = document.getElementById("btn-cancel-news-compose");
+const btnCancel2 = document.getElementById("btn-cancel-news-compose-2");
 
 // Bind Navigation
 btnCreate.addEventListener("click", () => showComposeForm());
 btnCancel1.addEventListener("click", () => showListPanel());
 btnCancel2.addEventListener("click", () => showListPanel());
 
-// Bind PDF File Pick & Upload
-btnPickFile.addEventListener("click", () => fileInput.click());
-fileInput.addEventListener("change", async (e) => {
-  const file = e.target.files[0];
-  if (file) {
-    try {
-      showToast("PDF belgesi yükleniyor...");
-      const url = await storageService.uploadFile(file, "pdfs");
-      fileUrlInput.value = url;
-
-      // Calculate file size
-      const KBs = file.size / 1024;
-      if (KBs > 1024) {
-        fileSizeInput.value = `${(KBs / 1024).toFixed(1)} MB`;
-      } else {
-        fileSizeInput.value = `${Math.round(KBs)} KB`;
-      }
-      showToast("PDF belgesi yüklendi!");
-    } catch (err) {
-      showToast("PDF belgesi yüklenemedi.", "error");
-    }
-  }
-});
-
-// Load resources
 async function initDashboard() {
   try {
-    const [catsData, pdfsData] = await Promise.all([
-      dbService.getCategories(),
-      dbService.getPdfs()
-    ]);
-    
-    categories = catsData;
-    pdfs = pdfsData;
-
-    populateCategoriesDropdown();
-    renderPdfs();
+    newsItems = await dbService.getNews(100);
+    renderNews();
   } catch (err) {
-    showToast("Veriler yüklenirken hata oluştu.", "error");
+    showToast("Haberler yüklenirken hata oluştu.", "error");
   }
 }
 
-function populateCategoriesDropdown() {
-  const dropdown = document.getElementById("pdf-category-select");
-  if (!dropdown) return;
-  dropdown.innerHTML = `
-    <option value="" disabled selected>Kategori Seçin</option>
-    ${categories.map(c => `<option value="${c.id}">${c.name}</option>`).join('')}
-  `;
-}
-
-function renderPdfs() {
+function renderNews() {
   if (!tableBody) return;
 
-  if (pdfs.length === 0) {
+  if (newsItems.length === 0) {
     tableBody.innerHTML = `
       <tr>
-        <td colspan="8" style="text-align:center; padding:3rem; color:var(--text-tertiary);">Henüz indirilebilir PDF belgesi eklenmedi.</td>
+        <td colspan="4" style="text-align:center; padding:3rem; color:var(--text-tertiary);">Henüz haber eklenmedi.</td>
       </tr>
     `;
     return;
   }
 
-  tableBody.innerHTML = pdfs.map(p => {
-    const catMatch = categories.find(c => c.id === p.category);
-    const catName = catMatch ? catMatch.name : '<span style="color:var(--text-tertiary);">Genel</span>';
-    const isVisible = p.visible !== false ? '✅ Görünür' : '❌ Gizli';
+  tableBody.innerHTML = newsItems.map(n => `
+    <tr>
+      <td style="font-weight:600;">${n.title}</td>
+      <td style="max-width: 250px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color:var(--text-secondary);">${n.summary || '-'}</td>
+      <td>${n.dateString}</td>
+      <td style="text-align:right;">
+        <div style="display:flex; justify-content:flex-end; gap:0.5rem;">
+          <button class="btn btn-secondary btn-sm edit-btn" data-id="${n.id}">Düzenle</button>
+          <button class="btn btn-danger btn-sm delete-btn" data-id="${n.id}">Sil</button>
+        </div>
+      </td>
+    </tr>
+  `).join('');
 
-    return `
-      <tr>
-        <td style="font-weight:600;">${p.title}</td>
-        <td style="max-width: 250px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color:var(--text-secondary);">${p.description || '-'}</td>
-        <td>${catName}</td>
-        <td>${p.fileSize}</td>
-        <td>${formatDate(p.uploadDate)}</td>
-        <td>${isVisible}</td>
-        <td style="font-weight:600;">${p.downloads || 0}</td>
-        <td style="text-align:right;">
-          <div style="display:flex; justify-content:flex-end; gap:0.5rem;">
-            <button class="btn btn-secondary btn-sm edit-pdf-btn" data-id="${p.id}">Düzenle</button>
-            <button class="btn btn-danger btn-sm delete-pdf-btn" data-id="${p.id}">Sil</button>
-          </div>
-        </td>
-      </tr>
-    `;
-  }).join('');
-
-  tableBody.querySelectorAll(".edit-pdf-btn").forEach(btn => {
-    btn.addEventListener("click", () => editPdf(btn.getAttribute("data-id")));
+  tableBody.querySelectorAll(".edit-btn").forEach(btn => {
+    btn.addEventListener("click", () => editNews(btn.getAttribute("data-id")));
   });
 
-  tableBody.querySelectorAll(".delete-pdf-btn").forEach(btn => {
-    btn.addEventListener("click", () => deletePdf(btn.getAttribute("data-id")));
+  tableBody.querySelectorAll(".delete-btn").forEach(btn => {
+    btn.addEventListener("click", () => deleteNews(btn.getAttribute("data-id")));
   });
 }
 
 function showComposeForm() {
   listPanel.style.display = "none";
   composePanel.style.display = "block";
-  composeTitle.textContent = "Araştırma PDF'i Yükle veya Yapılandır";
-  pdfForm.reset();
-  document.getElementById("edit-pdf-id").value = "";
+  composeTitle.textContent = "Haber Ekle";
+  newsForm.reset();
+  document.getElementById("edit-news-id").value = "";
 }
 
 function showListPanel() {
@@ -140,74 +79,61 @@ function showListPanel() {
   composePanel.style.display = "none";
 }
 
-function editPdf(id) {
-  const p = pdfs.find(item => item.id === id);
-  if (!p) return;
+function editNews(id) {
+  const n = newsItems.find(item => item.id === id);
+  if (!n) return;
 
   showComposeForm();
-  composeTitle.textContent = `Düzenle: ${p.title}`;
+  composeTitle.textContent = `Düzenle: ${n.title}`;
 
-  document.getElementById("edit-pdf-id").value = p.id;
-  document.getElementById("pdf-title-input").value = p.title;
-  document.getElementById("pdf-desc-input").value = p.description || "";
-  document.getElementById("pdf-category-select").value = p.category;
-  
-  document.getElementById("pdf-file-url").value = p.url;
-  document.getElementById("pdf-file-size").value = p.fileSize;
-
-  document.getElementById("pdf-visible-checkbox").checked = p.visible !== false;
+  document.getElementById("edit-news-id").value = n.id;
+  document.getElementById("news-title-input").value = n.title;
+  document.getElementById("news-date-input").value = n.dateString || "";
+  document.getElementById("news-summary-input").value = n.summary || "";
+  document.getElementById("news-content-input").value = n.content || "";
+  document.getElementById("news-cover-url").value = n.coverUrl || "";
 }
 
-async function deletePdf(id) {
-  if (confirm("Bu PDF arşivini silmek istediğinizden emin misiniz? Bu işlem geri alınamaz.")) {
+async function deleteNews(id) {
+  if (confirm("Bu haberi silmek istediğinizden emin misiniz?")) {
     try {
-      await dbService.deletePdf(id);
-      showToast("Belge başarıyla silindi.");
-      pdfs = pdfs.filter(p => p.id !== id);
-      renderPdfs();
+      await dbService.deleteNews(id);
+      showToast("Haber başarıyla silindi.");
+      newsItems = newsItems.filter(n => n.id !== id);
+      renderNews();
     } catch (err) {
-      showToast("PDF silinirken hata oluştu.", "error");
+      showToast("Haber silinirken hata oluştu.", "error");
     }
   }
 }
 
-pdfForm.addEventListener("submit", async (e) => {
+newsForm.addEventListener("submit", async (e) => {
   e.preventDefault();
 
-  const id = document.getElementById("edit-pdf-id").value;
-  const title = document.getElementById("pdf-title-input").value.trim();
-  const description = document.getElementById("pdf-desc-input").value.trim();
-  const category = document.getElementById("pdf-category-select").value;
-  
-  const url = document.getElementById("pdf-file-url").value.trim();
-  const fileSize = document.getElementById("pdf-file-size").value.trim();
-  const visible = document.getElementById("pdf-visible-checkbox").checked;
+  const id = document.getElementById("edit-news-id").value;
+  const title = document.getElementById("news-title-input").value.trim();
+  const dateString = document.getElementById("news-date-input").value.trim();
+  const summary = document.getElementById("news-summary-input").value.trim();
+  const content = document.getElementById("news-content-input").value.trim();
+  const coverUrl = document.getElementById("news-cover-url").value.trim();
 
-  const pdfData = {
-    title,
-    description,
-    category,
-    url,
-    fileSize,
-    visible
-  };
+  const data = { title, dateString, summary, content, coverUrl };
 
   try {
     if (id) {
-      await dbService.updatePdf(id, pdfData);
-      showToast("Belge ayarları güncellendi.");
+      await dbService.updateNews(id, data);
+      showToast("Haber güncellendi.");
     } else {
-      await dbService.createPdf(pdfData);
-      showToast("Belge başarıyla eklendi!");
+      await dbService.createNews(data);
+      showToast("Haber başarıyla eklendi!");
     }
 
-    pdfs = await dbService.getPdfs();
-    renderPdfs();
+    newsItems = await dbService.getNews(100);
+    renderNews();
     showListPanel();
   } catch (err) {
-    showToast("Belge ayrıntıları kaydedilirken hata oluştu.", "error");
+    showToast("Haber kaydedilirken hata oluştu.", "error");
   }
 });
 
-// Load
 await initDashboard();
