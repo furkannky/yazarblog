@@ -27,7 +27,7 @@ export const InitialData = {
 </ul>
 <p>Ultimately, a successful voice requires balancing modern digital platforms with classical, deep focus.</p>`,
       cover:
-        "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='800' height='450' viewBox='0 0 800 450'><defs><linearGradient id='g1' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' style='stop-color:%23495874;stop-opacity:1' /><stop offset='100%' style='stop-color:%23182030;stop-opacity:1' /></linearGradient></defs><rect width='100%' height='100%' fill='url(%23g1)'/><text x='50%' y='45%' font-family='Georgia, serif' font-size='32' fill='%23ffffff' text-anchor='middle'>The Art of Writing</text><text x='50%' y='55%' font-family='sans-serif' font-size='16' fill='%23a0aec0' letter-spacing='2' text-anchor='middle'>DIGITAL PUBLISHING IDEAS</text></svg>",
+        "/images/article_cover_1_1786476952914.png",
       categories: ["cat-1"],
       tags: ["Writing", "Technology", "Publishing"],
       readTime: "3 min read",
@@ -70,7 +70,7 @@ export const InitialData = {
 <h2>Spanning the Eastern Empire</h2>
 <p>By using bricks and lightweight mortar instead of heavy Roman concrete, builders achieved height and complex illumination heights through clerestory windows.</p>`,
       cover:
-        "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='800' height='450' viewBox='0 0 800 450'><defs><linearGradient id='g2' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' style='stop-color:%238c3a3a;stop-opacity:1' /><stop offset='100%' style='stop-color:%23321515;stop-opacity:1' /></linearGradient></defs><rect width='100%' height='100%' fill='url(%23g2)'/><text x='50%' y='45%' font-family='Georgia, serif' font-size='32' fill='%23ffffff' text-anchor='middle'>Forgotten Capitals</text><text x='50%' y='55%' font-family='sans-serif' font-size='16' fill='%23ff9999' letter-spacing='2' text-anchor='middle'>BYZANTINE ARCHITECTURE</text></svg>",
+        "/images/article_cover_2_1786476962370.png",
       categories: ["cat-2"],
       tags: ["History", "Architecture", "Art"],
       readTime: "5 min read",
@@ -92,7 +92,7 @@ export const InitialData = {
 <h2>Bell's Theorem and the Modern Proving Ground</h2>
 <p>John Bell demonstrated that no local hidden variable theory could reproduce the predictions of quantum mechanics. Modern experiments have repeatedly validated quantum predictions, with implications for quantum computing.</p>`,
       cover:
-        "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='800' height='450' viewBox='0 0 800 450'><defs><linearGradient id='g3' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' style='stop-color:%232a5a67;stop-opacity:1' /><stop offset='100%' style='stop-color:%2311262d;stop-opacity:1' /></linearGradient></defs><rect width='100%' height='100%' fill='url(%23g3)'/><text x='50%' y='45%' font-family='Georgia, serif' font-size='32' fill='%23ffffff' text-anchor='middle'>Quantum Entanglement</text><text x='50%' y='55%' font-family='sans-serif' font-size='16' fill='%238be2ef' letter-spacing='2' text-anchor='middle'>QUANTUM PHYSICS</text></svg>",
+        "/images/article_cover_1_1786476952914.png",
       categories: ["cat-3"],
       tags: ["Science", "Quantum", "Physics"],
       readTime: "4 min read",
@@ -111,7 +111,7 @@ export const InitialData = {
       description:
         "An extensive exploration of ancient city planning, trade routes, and royal court architectures throughout the Eastern Aegean Basin.",
       cover:
-        "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='500' viewBox='0 0 400 500'><defs><linearGradient id='b1' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' style='stop-color:%238c3a3a;stop-opacity:1' /><stop offset='100%' style='stop-color:%23321515;stop-opacity:1' /></linearGradient></defs><rect width='100%' height='100%' fill='url(%23b1)'/><rect x='20' y='20' width='360' height='460' fill='none' stroke='%23e2a2a2' stroke-width='2'/><text x='50%' y='40%' font-family='Georgia, serif' font-size='24' fill='%23ffffff' text-anchor='middle'>ECHOES OF THE PAST</text><text x='50%' y='48%' font-family='sans-serif' font-size='12' fill='%23ffb3b3' letter-spacing='2' text-anchor='middle'>BYZANTIUM STUDIES</text><text x='50%' y='85%' font-family='Georgia' font-style='italic' font-size='14' fill='%23ffffff' text-anchor='middle'>A. Author</text></svg>",
+        "/images/book_cover_1_1786476971255.png",
       pdfUrl: "mock_byzantine_echoes.pdf",
       pdfSize: "4.8 MB",
       purchaseLinks: {
@@ -128,7 +128,7 @@ export const InitialData = {
       description:
         "A comprehensive guide translating advanced subatomic mechanics into concepts accessible to lay readers, charting computing paradigms.",
       cover:
-        "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='500' viewBox='0 0 400 500'><defs><linearGradient id='b2' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' style='stop-color:%232a5a67;stop-opacity:1' /><stop offset='100%' style='stop-color:%2311262d;stop-opacity:1' /></linearGradient></defs><rect width='100%' height='100%' fill='url(%23b2)'/><rect x='20' y='20' width='360' height='460' fill='none' stroke='%238be2ef' stroke-width='2'/><text x='50%' y='40%' font-family='Georgia, serif' font-size='24' fill='%23ffffff' text-anchor='middle'>THE QUANTUM HORIZON</text><text x='50%' y='48%' font-family='sans-serif' font-size='12' fill='%238be2ef' letter-spacing='2' text-anchor='middle'>SUBATOMIC PHYSICS</text><text x='50%' y='85%' font-family='Georgia' font-style='italic' font-size='14' fill='%23ffffff' text-anchor='middle'>A. Author</text></svg>",
+        "/images/book_cover_1_1786476971255.png",
       pdfUrl: "",
       pdfSize: "0",
       purchaseLinks: {
@@ -179,7 +179,7 @@ export const InitialData = {
       "© 2026 A. Author. All rights reserved. Built using clean web technologies.",
     contactEmail: "author@publish.site",
     socialLinks: {
-      twitter: "https://twitter.com",
+      twitter: "https://twitter.com/adilyilmayan",
       github: "https://github.com",
       medium: "https://medium.com",
     },
@@ -190,7 +190,7 @@ export const InitialData = {
       email: "admin@publish.site",
       password: "admin123",
       avatar:
-        "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'><rect width='100' height='100' fill='%234a5568'/><circle cx='50' cy='35' r='20' fill='%23cbd5e0'/><path d='M20 80c0-15 15-20 30-20s30 5 30 20z' fill='%23cbd5e0'/></svg>",
+        "/images/author_portrait_1786476943759.png",
     },
   ],
   pdfs: [
