@@ -1418,3 +1418,6 @@
     padding-bottom: 1rem;
   }
 }
+
+.catalog-grid { display: grid; grid-template-columns: 1.3fr 0.7fr; gap: 3rem; margin-top: 2rem; }
+@media (max-width: 900px) { .catalog-grid { grid-template-columns: 1fr; } }

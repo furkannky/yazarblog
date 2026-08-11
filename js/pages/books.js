@@ -31,21 +31,21 @@ function renderBooksList(books) {
     const showDownloadLink = b.testDownloadEnabled && b.pdfUrl;
 
     return `
-      <div class="card book-card" style="display:grid; grid-template-columns: 300px 1fr; border-radius:var(--radius-lg);">
-        <div class="book-card-cover-container" style="padding: 2.5rem; background-color: var(--bg-secondary);">
-          <img src="${b.cover}" alt="${b.title}" class="book-card-cover" style="width: 80%; max-width: 220px;">
+      <div class="card book-card" style="display: flex; flex-direction: column; align-items: center; border-radius: var(--radius-lg); text-align: center;">
+        <div class="book-card-cover-container" style="padding: 2.5rem; background-color: var(--bg-secondary); width: 100%; display: flex; justify-content: center;">
+          <img src="${b.cover}" alt="${b.title}" class="book-card-cover" style="width: 200px; max-width: 100%; box-shadow: var(--shadow-md);">
         </div>
-        <div class="book-card-info" style="padding: 2.5rem; justify-content: center;">
-          <h2 style="font-family: var(--font-serif); font-size: 1.85rem; margin-bottom: 0.5rem; letter-spacing:-0.02em;">${b.title}</h2>
-          <span style="font-size: 0.9rem; font-weight:600; color: var(--accent); margin-bottom: 1.5rem; display:block;">A. Author tarafından</span>
-          <p style="color: var(--text-secondary); line-height: 1.7; margin-bottom: 2rem; font-size: 1.05rem;">${b.description}</p>
+        <div class="book-card-info" style="padding: 2.5rem; display: flex; flex-direction: column; flex-grow: 1;">
+          <h2 style="font-family: var(--font-serif); font-size: 1.5rem; margin-bottom: 0.5rem;">${b.title}</h2>
+          <span style="font-size: 0.9rem; font-weight:600; color: var(--accent); margin-bottom: 1.5rem; display:block;">Adil Yılmayan</span>
+          <p style="color: var(--text-secondary); line-height: 1.6; margin-bottom: 2rem; font-size: 1rem; text-align: left;">${b.description}</p>
           
-          <div style="display:flex; flex-wrap:wrap; gap:1rem; border-top:1px solid var(--border-color); padding-top: 1.5rem;">
-            ${buyAmazon ? `<a href="${buyAmazon}" target="_blank" class="btn btn-primary">Amazon'dan Satın Al</a>` : ''}
-            ${buyKobo ? `<a href="${buyKobo}" target="_blank" class="btn btn-secondary">Kobo'dan Satın Al</a>` : ''}
+          <div style="display:flex; flex-wrap:wrap; justify-content: center; gap:1rem; border-top:1px solid var(--border-color); padding-top: 1.5rem; margin-top: auto;">
+            ${buyAmazon ? `<a href="${buyAmazon}" target="_blank" class="btn btn-primary">Amazon'dan Al</a>` : ''}
+            ${buyKobo ? `<a href="${buyKobo}" target="_blank" class="btn btn-secondary">Kobo'dan Al</a>` : ''}
             ${showDownloadLink ? `
               <button class="btn btn-secondary download-sample-btn" data-url="${b.pdfUrl}" data-id="${b.id}" style="border: 1px dashed var(--accent); color: var(--accent);">
-                Örnek İndir (${b.pdfSize || 'Bölüm'})
+                Örnek İndir
               </button>
             ` : ''}
           </div>

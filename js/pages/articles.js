@@ -108,19 +108,19 @@ function renderArticlesFeed() {
   root.innerHTML = pageItems.map(a => {
     const readTime = calculateReadingTime(a.content);
     return `
-      <article class="card article-card" style="flex-direction:row; margin-bottom:1.5rem; gap:1.5rem; align-items:center; min-height: 180px;">
-        <div class="article-card-cover" style="width:200px; height:180px; flex-shrink:0;">
-          <a href="/article.html?slug=${a.slug}" style="width:100%; height:100%;"><img src="${a.cover}" alt="${a.title}" style="width:100%; height:100%; object-fit:cover;"></a>
+      <article class="card article-card">
+        <div class="article-card-cover">
+          <a href="/article.html?slug=${a.slug}"><img src="${a.cover}" alt="${a.title}"></a>
         </div>
-        <div class="article-card-content" style="padding:1rem; border:none; flex-grow:1;">
+        <div class="article-card-content">
           <div class="article-card-meta">
             <span class="article-card-category">${getCategoryNames(a.categories)}</span>
             <span>•</span>
             <span>${formatDate(a.publishedAt)}</span>
           </div>
-          <h3 class="article-card-title" style="font-size:1.35rem; margin-bottom:0.5rem;"><a href="/article.html?slug=${a.slug}">${a.title}</a></h3>
-          <p class="article-card-summary" style="margin-bottom:0.75rem; -webkit-line-clamp:2;">${a.summary}</p>
-          <div class="article-card-footer" style="padding-top:0.75rem;">
+          <h3 class="article-card-title"><a href="/article.html?slug=${a.slug}">${a.title}</a></h3>
+          <p class="article-card-summary">${a.summary}</p>
+          <div class="article-card-footer">
             <span>${readTime}</span>
             <span>${a.views} okuma</span>
           </div>
