@@ -117,6 +117,7 @@ export const InitialData = {
       purchaseLinks: {
         amazon: "https://amazon.com",
         kobo: "https://kobo.com",
+        nubihar: "https://nubihar.com",
       },
       order: 1,
       testDownloadEnabled: true,
@@ -133,6 +134,7 @@ export const InitialData = {
       pdfSize: "0",
       purchaseLinks: {
         amazon: "https://amazon.com",
+        nubihar: "https://nubihar.com",
       },
       order: 2,
       testDownloadEnabled: false,

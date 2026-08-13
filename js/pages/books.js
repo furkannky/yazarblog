@@ -25,6 +25,7 @@ function renderBooksList(books) {
 
   root.innerHTML = books.map(b => {
     const buyAmazon = b.purchaseLinks ? b.purchaseLinks.amazon : "";
+    const buyNubihar = b.purchaseLinks ? b.purchaseLinks.nubihar : "";
     const buyKobo = b.purchaseLinks ? b.purchaseLinks.kobo : "";
 
     // Show PDF sample download if enabled
@@ -41,6 +42,7 @@ function renderBooksList(books) {
           <p style="color: var(--text-secondary); line-height: 1.6; margin-bottom: 2rem; font-size: 1rem; text-align: left;">${b.description}</p>
           
           <div style="display:flex; flex-wrap:wrap; justify-content: center; gap:1rem; border-top:1px solid var(--border-color); padding-top: 1.5rem; margin-top: auto;">
+            ${buyNubihar ? `<a href="${buyNubihar}" target="_blank" class="btn btn-primary" style="background:var(--accent);">Nûbihar'dan Al</a>` : ''}
             ${buyAmazon ? `<a href="${buyAmazon}" target="_blank" class="btn btn-primary">Amazon'dan Al</a>` : ''}
             ${buyKobo ? `<a href="${buyKobo}" target="_blank" class="btn btn-secondary">Kobo'dan Al</a>` : ''}
             ${showDownloadLink ? `

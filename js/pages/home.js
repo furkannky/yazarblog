@@ -125,6 +125,7 @@ function renderFeaturedBooks(booksList) {
 
   root.innerHTML = booksList.map(b => {
     const AmazonBuy = b.purchaseLinks ? b.purchaseLinks.amazon : "";
+    const NubiharBuy = b.purchaseLinks ? b.purchaseLinks.nubihar : "";
     return `
       <div class="book-card">
         <div class="book-card-cover-container">
@@ -132,9 +133,10 @@ function renderFeaturedBooks(booksList) {
         </div>
         <div class="book-card-info">
           <h3 class="book-card-title">${b.title}</h3>
-          <span class="book-card-author">A. Author tarafından</span>
+          <span class="book-card-author">Dr. Adil Yılmayan</span>
           <p class="book-card-description">${b.description}</p>
           <div class="book-card-actions">
+            ${NubiharBuy ? `<a href="${NubiharBuy}" target="_blank" class="btn btn-primary btn-sm" style="background:var(--accent);">Nûbihar'dan Al</a>` : ''}
             ${AmazonBuy ? `<a href="${AmazonBuy}" target="_blank" class="btn btn-secondary btn-sm">Amazon'dan Al</a>` : ''}
             <a href="/books.html" class="btn btn-primary btn-sm">Detaylar</a>
           </div>

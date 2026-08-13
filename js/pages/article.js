@@ -30,7 +30,7 @@ export async function initArticlePage() {
     renderArticleDetails();
 
     // 4. Set document title for SEO
-    document.title = currentArticle.seoTitle || `${currentArticle.title} | A. Author`;
+    document.title = currentArticle.seoTitle || `${currentArticle.title} | Dr. Adil Yılmayan`;
     const metaDesc = document.querySelector('meta[name="description"]');
     if (metaDesc) metaDesc.setAttribute("content", currentArticle.seoDescription || currentArticle.summary);
 
