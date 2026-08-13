@@ -37,16 +37,16 @@ function renderBooksList(books) {
         </div>
         <div class="book-card-info" style="padding: 2.5rem; display: flex; flex-direction: column; flex-grow: 1;">
           <h2 style="font-family: var(--font-serif); font-size: 1.5rem; margin-bottom: 0.5rem;">${b.title}</h2>
-          <span style="font-size: 0.9rem; font-weight:600; color: var(--accent); margin-bottom: 1.5rem; display:block;">Adil Yılmayan</span>
+          <span style="font-size: 0.9rem; font-weight:600; color: var(--accent); margin-bottom: 1.5rem; display:block;">Dr. Adil Yılmayan</span>
           <p style="color: var(--text-secondary); line-height: 1.6; margin-bottom: 2rem; font-size: 1rem; text-align: left;">${b.description}</p>
           
           <div style="display:flex; flex-wrap:wrap; justify-content: center; gap:1rem; border-top:1px solid var(--border-color); padding-top: 1.5rem; margin-top: auto;">
             ${buyAmazon ? `<a href="${buyAmazon}" target="_blank" class="btn btn-primary">Amazon'dan Al</a>` : ''}
             ${buyKobo ? `<a href="${buyKobo}" target="_blank" class="btn btn-secondary">Kobo'dan Al</a>` : ''}
             ${showDownloadLink ? `
-              <button class="btn btn-secondary download-sample-btn" data-url="${b.pdfUrl}" data-id="${b.id}" style="border: 1px dashed var(--accent); color: var(--accent);">
+              <a href="${b.pdfUrl}" target="_blank" class="btn btn-secondary download-sample-btn" data-id="${b.id}" style="border: 1px dashed var(--accent); color: var(--accent);">
                 Örnek İndir
-              </button>
+              </a>
             ` : ''}
           </div>
         </div>
@@ -57,16 +57,10 @@ function renderBooksList(books) {
   // Bind Downloads
   root.querySelectorAll(".download-sample-btn").forEach(btn => {
     btn.addEventListener("click", async (e) => {
-      const url = btn.getAttribute("data-url");
       const id = btn.getAttribute("data-id");
-      try {
-        await dbService.incrementPdfDownloads(id);
-        showToast("Örnek PDF indirmesi başlatılıyor...");
-        // In a real environment, redirect to target:
-        window.open(url, "_blank");
-      } catch (err) {
-        console.error("Download fail:", err);
-      }
+      showToast("Örnek PDF indirmesi başlatılıyor...");
+      // Background increment
+      dbService.incrementPdfDownloads(id).catch(err => console.error("Download fail:", err));
     });
   });
 }

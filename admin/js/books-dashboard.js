@@ -175,7 +175,7 @@ function editBook(id) {
   document.getElementById("book-pdf-size").value = b.pdfSize || "";
   
   if (b.purchaseLinks) {
-    document.getElementById("book-link-amazon").value = b.purchaseLinks.amazon || "";
+    document.getElementById("book-link-nubihar").value = b.purchaseLinks.nubihar || "";
     document.getElementById("book-link-kobo").value = b.purchaseLinks.kobo || "";
   }
 
@@ -209,7 +209,7 @@ bookForm.addEventListener("submit", async (e) => {
   const pdfUrl = document.getElementById("book-pdf-url").value.trim();
   const pdfSize = document.getElementById("book-pdf-size").value.trim();
   
-  const amazon = document.getElementById("book-link-amazon").value.trim();
+  const nubihar = document.getElementById("book-link-nubihar").value.trim();
   const kobo = document.getElementById("book-link-kobo").value.trim();
 
   const testDownloadEnabled = document.getElementById("book-download-enabled-checkbox").checked;
@@ -221,7 +221,7 @@ bookForm.addEventListener("submit", async (e) => {
     cover,
     pdfUrl,
     pdfSize,
-    purchaseLinks: { amazon, kobo },
+    purchaseLinks: { nubihar, kobo },
     testDownloadEnabled
   };
 

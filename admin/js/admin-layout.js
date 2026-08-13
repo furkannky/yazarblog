@@ -21,8 +21,8 @@ export async function injectAdminStructure(activePage = "") {
   if (!wrapper) return;
 
   const settings = await dbService.getSettings();
-  let title = settings.logoText || "Adil Yılmayan";
-  if (title === "name" || title === "A. Author") title = "Adil Yılmayan";
+  let title = settings.logoText || "Dr. Adil Yılmayan";
+  if (title === "name" || title === "A. Author") title = "Dr. Adil Yılmayan";
 
   const user = authService.getCurrentUser();
   const userName = user.email ? user.email.split("@")[0] : "Admin";

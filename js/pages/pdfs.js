@@ -113,23 +113,29 @@ function renderPdfsGrid() {
 
   // Bind Downloads Triggers
   root.querySelectorAll(".start-pdf-download-btn").forEach(btn => {
-    btn.addEventListener("click", async () => {
+    btn.addEventListener("click", () => {
       const id = btn.getAttribute("data-id");
       const title = btn.getAttribute("data-title");
-      try {
-        const newCount = await dbService.incrementPdfDownloads(id);
-        
-        // Update local statistics DOM instantly
-        const countSpan = document.getElementById(`download-count-${id}`);
-        if (countSpan) countSpan.textContent = `📥 ${newCount} indirme`;
-
-        showToast(`İndiriliyor: ${title}`);
-        
-        // Mock actual download file creation trigger
-        triggerBrowserDownload(title);
-      } catch (err) {
-        console.error("Increment fail:", err);
-      }
+      
+      showToast(`İndiriliyor: ${title}`);
+      
+      // Trigger synchronous download FIRST to maintain user gesture
+      triggerBrowserDownload(title);
+      
+      // Background increment
+      dbService.incrementPdfDownloads(id)
+        .then((newCount) => {
+          if (newCount) {
+            const countSpans = document.querySelectorAll(`#download-count-${id}`);
+            countSpans.forEach(span => span.textContent = `📥 ${newCount} indirme`);
+            
+            const inMemPdf = pdfs.find(p => p.id === id);
+            if (inMemPdf) inMemPdf.downloads = newCount;
+            const inMemFiltered = filteredPdfs.find(p => p.id === id);
+            if (inMemFiltered) inMemFiltered.downloads = newCount;
+          }
+        })
+        .catch(err => console.error("Increment fail:", err));
     });
   });
 }

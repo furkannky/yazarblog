@@ -522,6 +522,56 @@ export const dbService = {
       }
       return mockDBInstance.create("newsletter", { email, subscribedAt: new Date().toISOString() });
     }
+  },
+
+  // Missing PDFs CRUD
+  getPdfs: async () => {
+    try {
+      if (isUsingMock || !firebaseLoaded) {
+        return mockDBInstance.list("pdfs").sort((a,b) => (b.downloads || 0) - (a.downloads || 0));
+      }
+      const { collection, getDocs } = await import("https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js");
+      const snapshot = await getDocs(collection(realDb, "pdfs"));
+      return snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+    } catch (err) {
+      console.warn("Firestore getPdfs failed, falling back to mock:", err);
+      return mockDBInstance.list("pdfs");
+    }
+  },
+  
+  incrementPdfDownloads: async (id) => {
+    try {
+      // First try to check if it's a book (books have pdf samples)
+      const books = await dbService.getBooks();
+      const book = books.find(b => b.id === id);
+      if (book) {
+        const downloads = (book.downloads || 0) + 1;
+        await dbService.updateBook(id, { downloads });
+        return downloads;
+      }
+      
+      // If not a book, check pdfs collection
+      if (isUsingMock || !firebaseLoaded) {
+        const pdf = mockDBInstance.get("pdfs", id);
+        if (pdf) {
+          const downloads = (pdf.downloads || 0) + 1;
+          mockDBInstance.update("pdfs", id, { downloads });
+          return downloads;
+        }
+      } else {
+        const { doc, getDoc, updateDoc } = await import("https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js");
+        const docRef = doc(realDb, "pdfs", id);
+        const snap = await getDoc(docRef);
+        if (snap.exists()) {
+          const downloads = (snap.data().downloads || 0) + 1;
+          await updateDoc(docRef, { downloads });
+          return downloads;
+        }
+      }
+    } catch (err) {
+      console.warn("incrementPdfDownloads failed:", err);
+    }
+    return 0;
   }
 };
 
