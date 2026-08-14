@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   // Initialize global interactions
   initScrollEffects();
-  initGlobalSearch();
+  // initGlobalSearch(); // Arama modalı istenmediği için pasif edildi
 
   // Load page-specific business workflows
   if (activeTab === "home") {

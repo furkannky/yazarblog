@@ -1,10 +1,10 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>YazÄ± DetayÄ± | Adil YÄ±lmayan YayÄ±nlarÄ±</title>
-  <meta name="description" content="Makalenin tam metnini okuyun, yorumlarÄ± inceleyin veya dÃ¼ÅŸÃ¼ncelerinizi paylaÅŸÄ±n.">
+  <title>Yazı DetayÄ± | Adil YÄ±lmayan Yayınları</title>
+  <meta name="description" content="Makalenin tam metnini okuyun, yorumları inceleyin veya düşüncelerinizi paylaşın.">
   <link rel="stylesheet" href="/css/index.css">
   <link rel="stylesheet" href="/css/public.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -41,33 +41,33 @@
       <!-- Article Header details -->
       <header class="article-header">
         <span class="article-category-badge" id="article-view-category">Konu</span>
-        <h1 class="article-title" id="article-view-title">Makale BaÅŸlÄ±ÄŸÄ±</h1>
+        <h1 class="article-title" id="article-view-title">Makale Başlığı</h1>
         
         <!-- Meta Details row -->
         <div class="article-meta-info">
           <div class="article-author-info">
-            <img src="/images/author_portrait_1786476943759.png" alt="Yazar avatarÄ±" class="article-author-avatar" id="article-author-avatar-img">
-            <span>Adil YÄ±lmayan tarafÄ±ndan</span>
+            <img src="/images/image1.jpg" alt="Yazar avatarı" class="article-author-avatar" id="article-author-avatar-img">
+            <span>Adil Yılmayan tarafından</span>
           </div>
           <span>â€¢</span>
-          <span id="article-view-date">6 AÄŸustos 2026</span>
+          <span id="article-view-date">6 Ağustos 2026</span>
           <span>â€¢</span>
           <span id="article-view-reading-time">3 dk okuma</span>
           <span>â€¢</span>
-          <span id="article-view-counter">0 gÃ¶rÃ¼ntÃ¼lenme</span>
+          <span id="article-view-counter">0 görüntülenme</span>
         </div>
 
         <!-- Social Share buttons -->
         <div style="display:flex; justify-content:center; gap: 0.5rem; margin-bottom:1.5rem;">
-          <button id="share-btn-twitter" class="share-btn" title="Twitter'da PaylaÅŸ">ğŸ¦</button>
-          <button id="share-btn-facebook" class="share-btn" title="Facebook'ta PaylaÅŸ">ğŸ‘¤</button>
-          <button id="share-btn-link" class="share-btn" title="BaÄŸlantÄ±yÄ± Kopyala">ğŸ”—</button>
+          <button id="share-btn-twitter" class="share-btn" title="Twitter'da Paylaş">ğŸ¦</button>
+          <button id="share-btn-facebook" class="share-btn" title="Facebook'ta Paylaş">ğŸ‘¤</button>
+          <button id="share-btn-link" class="share-btn" title="Bağlantıyı Kopyala">ğŸ”—</button>
         </div>
       </header>
 
       <!-- Featured Cover Wrap -->
       <div class="article-cover-img-wrapper">
-        <img src="/images/author_portrait_1786476943759.png" alt="Ã–ne Ã‡Ä±kan GÃ¶rsel" id="article-view-cover-img">
+        <img src="/images/image1.jpg" alt="Öne Çıkan Görsel" id="article-view-cover-img">
       </div>
 
       <!-- Main Rich Content Body -->
@@ -83,46 +83,13 @@
 
     <!-- Related Articles -->
     <section class="scroll-trigger" style="margin-top:4rem; border-top:1px solid var(--border-color); padding-top:3rem;">
-      <h3 style="font-family:var(--font-serif); font-size:1.5rem; margin-bottom: 2rem;">SÄ±radaki YazÄ±</h3>
+      <h3 style="font-family:var(--font-serif); font-size:1.5rem; margin-bottom: 2rem;">Sıradaki Yazı</h3>
       <div class="articles-grid" style="grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));" id="related-articles-root">
         <!-- Rendered via article.js -->
       </div>
     </section>
 
-    <!-- Comments Moderated queue -->
-    <section class="comments-section scroll-trigger">
-      <h3 class="comment-box-title">Yorumlar (<span id="comments-count-badge">0</span>)</h3>
-      <ul class="comments-list" id="comments-timeline-list">
-        <!-- Loader element or items -->
-      </ul>
 
-      <!-- Leave comment form -->
-      <div class="comment-form">
-        <h4 style="margin-bottom:1.25rem; font-family:var(--font-serif); font-size:1.2rem;">Bir Yorum YazÄ±n</h4>
-        <p style="font-size:0.85rem; color:var(--text-tertiary); margin-bottom:1.5rem;">E-posta adresiniz yayÄ±nlanmayacaktÄ±r. Gerekli alanlar * ile iÅŸaretlenmiÅŸtir.</p>
-        
-        <form id="article-comment-submit-form">
-          <div class="form-group">
-            <label class="form-label" for="comment-author-name">Ä°sim *</label>
-            <input type="text" id="comment-author-name" class="form-control" placeholder="AdÄ±nÄ±z" required>
-          </div>
-          <div class="form-group">
-            <label class="form-label" for="comment-author-email">E-posta *</label>
-            <input type="email" id="comment-author-email" class="form-control" placeholder="adiniz@eposta.com" required>
-          </div>
-          <div class="form-group">
-            <label class="form-label" for="comment-message-body">Yorum *</label>
-            <textarea id="comment-message-body" class="form-control" rows="5" placeholder="DÃ¼ÅŸÃ¼ncelerinizi paylaÅŸÄ±n..." required></textarea>
-          </div>
-          <!-- Simple Spam Protection Challenge -->
-          <div class="form-group">
-            <label class="form-label" for="comment-spam-challenge">Spam KorumasÄ±: 5 + 3 kaÃ§tÄ±r? *</label>
-            <input type="number" id="comment-spam-challenge" class="form-control" placeholder="Sonucu girin" required>
-          </div>
-          <button type="submit" class="btn btn-primary">Yorum GÃ¶nder</button>
-        </form>
-      </div>
-    </section>
   </main>
 
             <footer class="site-footer">
