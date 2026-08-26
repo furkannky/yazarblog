@@ -120,7 +120,7 @@ function renderArticlesList() {
   }
 
   tableBody.innerHTML = filtered.map(a => {
-    const catsStr = a.categories.map(id => {
+    const catsStr = (a.categories || []).map(id => {
       const match = categories.find(c => c.id === id);
       return match ? match.name : "";
     }).filter(n => n.length > 0).join(', ');

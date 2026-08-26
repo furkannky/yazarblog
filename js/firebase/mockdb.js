@@ -10,6 +10,9 @@ const InitialData = {
     { id: "cat-5", name: "Eğitim", slug: "egitim", order: 5 },
     { id: "cat-6", name: "Sağlık", slug: "saglik", order: 6 }
   ],
+  users: [
+    { id: "u-1", email: "admin@adilyilmayan.com", password: "admin123", name: "Yönetici" }
+  ],
   articles: [
     {
       id: "art-1",
@@ -29,10 +32,11 @@ const InitialData = {
 </ul>
 <p>Kelime ve söz biçimleme araçlarındaki bu yalınlık sadece yüzeysel bir tercih değildir. Gerçek meseleye odaklanmamızı teşvik eder: Yazının kendisine.</p>
       `,
-      cover: "https://images.unsplash.com/photo-1455390582262-044cdead2708?auto=format&fit=crop&q=80&w=1200",
+      cover: "/images/article_cover_1_1786476952914.png",
       status: "published",
       categoryId: "cat-1",
       createdAt: new Date(Date.now() - 1000 * 60 * 60 * 24 * 7).toISOString(), // 7 days ago
+      views: 145,
       seoTitle: "Dijital Çağda Yazarlık Sanatı | Profesyonel Yazar",
       seoDesc: "İnternet yayıncılığının evrimi, taslakların açık platformlardaki ilerleyişi ve modern yazar araçları üzerine akademik bir değerlendirme.",
       tags: ["yazarlık", "dijitalleştirme", "yayıncılık"]
@@ -48,10 +52,11 @@ const InitialData = {
 <blockquote>Mimari sadece binaları değil, o binaları yaptıran zihniyetin öfke ve inancını da taşır. - İmparatorluk Kayıtları.</blockquote>
 <p>Bugün bile şehrin modern binalarına gizlenmiş olan o eski freskler, bizlere tarihin sürekliliğini kanıtlıyor...</p>
       `,
-      cover: "https://images.unsplash.com/photo-1549488344-c6e08c697843?auto=format&fit=crop&q=80&w=1200",
+      cover: "/images/article_cover_2_1786476962370.png",
       status: "published",
       categoryId: "cat-2",
       createdAt: new Date(Date.now() - 1000 * 60 * 60 * 24 * 30).toISOString(),
+      views: 98,
       seoTitle: "",
       seoDesc: "",
       tags: ["mimari", "tarih", "bizans"]
@@ -66,10 +71,11 @@ const InitialData = {
 <p>Modern sosyolojide, tıpkı kuantum durumlarında gördüğümüz "gözlemcinin sonucu etkilemesi" kuralı vardır. Bir grubun sosyal davranışı, dışarıdan gözlemlendiğinde farklı reaksiyonlar geliştirir.</p>
 <p>Bu makalede kuantum dolaşıklığı ile sosyal medya üzerindeki bilginin kitlelere anında yansımasını ve insan bağlarını inceleyeceğiz.</p>
       `,
-      cover: "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?auto=format&fit=crop&q=80&w=1200",
+      cover: "/images/article_cover_1_1786476952914.png",
       status: "draft",
       categoryId: "cat-3",
       createdAt: new Date().toISOString(),
+      views: 220,
       seoTitle: "",
       seoDesc: "",
       tags: ["fizik", "sosyoloji", "teori"]
@@ -80,7 +86,7 @@ const InitialData = {
       id: "bk-1",
       title: "Geçmişin Yankıları: Bizans Yankıları",
       slug: "gecmisin-yankilari-bizans",
-      cover: "https://images.unsplash.com/photo-1589829085413-56de8ae18c73?auto=format&fit=crop&q=80&w=800",
+      cover: "/images/book_cover_1_1786476971255.png",
       description: "Bizans mimarisi üzerine modern, derinlemesine ve göz dolduran bir değerlendirme.",
       isbn: "978-0-123456-47-2",
       pages: 342,
@@ -98,7 +104,7 @@ const InitialData = {
       id: "bk-2",
       title: "Sosyal Ufuk",
       slug: "sosyal-ufuk",
-      cover: "https://images.unsplash.com/photo-1618055605929-c702f3fac886?auto=format&fit=crop&q=80&w=800",
+      cover: "/images/book_cover_1_1786476971255.png",
       description: "Sosyal gerçekliklerin modern yüzyılda fizikle birleşip yeni bir insanlık profili çizdiği bir başucu kitabı.",
       isbn: "978-1-987654-32-1",
       pages: 280,
@@ -207,19 +213,19 @@ class MockDatabase {
   }
   ensureInitialized() {
     Object.keys(InitialData).forEach(key => {
-      if (!localStorage.getItem(`yazar_db_${key}`)) {
+      if (!localStorage.getItem(`yazar_db_v3_${key}`)) {
         localStorage.setItem(
-          `yazar_db_${key}`,
+          `yazar_db_v3_${key}`,
           JSON.stringify(InitialData[key])
         );
       }
     });
   }
   list(collection) {
-    return JSON.parse(localStorage.getItem(`yazar_db_${collection}`)) || [];
+    return JSON.parse(localStorage.getItem(`yazar_db_v3_${collection}`)) || [];
   }
   saveList(collection, data) {
-    localStorage.setItem(`yazar_db_${collection}`, JSON.stringify(data));
+    localStorage.setItem(`yazar_db_v3_${collection}`, JSON.stringify(data));
   }
   get(collection, id) {
     const list = this.list(collection);

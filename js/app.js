@@ -9,6 +9,13 @@ import { initArticlePage } from './pages/article.js';
 import { initBooksPage } from './pages/books.js';
 import { initNewsPage } from './pages/news.js';
 import { initContactPage } from './pages/contact.js';
+import { initPdfsPage } from './pages/pdfs.js';
+
+// About page doesn't need dynamic content, just scroll effects
+const initAboutPage = () => {
+  console.log('About page initialized');
+  return Promise.resolve();
+};
 
 document.addEventListener("DOMContentLoaded", async () => {
   // Detect Current Page
@@ -29,6 +36,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     activeTab = "news";
   } else if (path.endsWith("/contact.html")) {
     activeTab = "contact";
+  } else if (path.endsWith("/pdf-library.html")) {
+    activeTab = "pdfs";
   }
 
   // Inject structural nodes
@@ -42,6 +51,8 @@ document.addEventListener("DOMContentLoaded", async () => {
   // Load page-specific business workflows
   if (activeTab === "home") {
     await initHomePage();
+  } else if (activeTab === "about") {
+    await initAboutPage();
   } else if (activeTab === "articles" && path.endsWith("/articles.html")) {
     await initArticlesPage();
   } else if (activeTab === "articles" && path.endsWith("/article.html")) {
@@ -52,5 +63,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     await initNewsPage();
   } else if (activeTab === "contact") {
     await initContactPage();
+  } else if (activeTab === "pdfs") {
+    await initPdfsPage();
   }
 });
