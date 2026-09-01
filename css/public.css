@@ -378,7 +378,7 @@
   overflow: hidden;
   transition: all var(--transition-normal);
   position: relative;
-  align-items: center;
+  align-items: stretch;
 }
 
 .book-card:hover {
@@ -1425,3 +1425,18 @@
     grid-template-columns: 1fr;
   }
 }
+
+
+/* --- CATALOG BOOK CARDS --- */
+.catalog-book-card { display: flex; flex-direction: column; background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-lg); overflow: hidden; margin-bottom: 2rem; }
+.catalog-book-cover-container { padding: 2.5rem; background: var(--bg-secondary); display: flex; align-items: center; justify-content: center; border-bottom: 1px solid var(--border-color); }
+.catalog-book-cover { width: 160px; max-width: 100%; box-shadow: var(--shadow-md); transition: transform var(--transition-normal); }
+.catalog-book-card:hover .catalog-book-cover { transform: scale(1.05) translateY(-5px); }
+.catalog-book-info { padding: 2rem; display: flex; flex-direction: column; flex-grow: 1; text-align: center; }
+.catalog-book-info h2 { font-family: var(--font-serif); font-size: 1.6rem; margin-bottom: 0.5rem; }
+.catalog-book-author { font-size: 0.9rem; font-weight: 600; color: var(--accent); margin-bottom: 1.5rem; display: block; text-transform: uppercase; letter-spacing: 0.05em; }
+.catalog-book-desc { color: var(--text-secondary); line-height: 1.6; margin-bottom: 2rem; font-size: 1rem; }
+.catalog-book-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; border-top: 1px solid var(--border-color); padding-top: 1.5rem; margin-top: auto; }
+.catalog-book-actions .btn { padding: 0.75rem 1.5rem; }
+.btn.nubihar { background-color: var(--accent); border-color: var(--accent); }
+@media (min-width: 600px) { .catalog-book-card { flex-direction: row; align-items: stretch; } .catalog-book-cover-container { padding: 3rem; flex: 0 0 300px; border-bottom: none; border-right: 1px solid var(--border-color); } .catalog-book-cover { width: 220px; } .catalog-book-info { text-align: left; padding: 3rem; } .catalog-book-info h2 { font-size: 1.8rem; } .catalog-book-actions { justify-content: flex-start; padding-top: 2rem; } }
