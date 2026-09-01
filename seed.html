@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>Veritabanı Yükleniyor...</title>
+  <style>
+    body { font-family: sans-serif; padding: 50px; text-align: center; background: #f8f9fa; color: #333; }
+    h2 { color: #2c3e50; }
+    .status { font-size: 1.2rem; margin-top: 20px; font-weight: bold; color: #10b981; }
+    .error { color: #ef4444; }
+  </style>
+</head>
+<body>
+  <h2>Eski Verileriniz Firebase'e Aktarılıyor...</h2>
+  <p>Lütfen bekleyin, bu işlem sadece vài saniye sürecek.</p>
+  <div class="status" id="status">Aktarım başlatılıyor...</div>
+
+  <script type="module">
+    import { dbService } from './js/firebase/config.js';
+    import { InitialData } from './js/firebase/mockdb.js';
+
+    async function seedDatabase() {
+      const statusLbl = document.getElementById('status');
+      try {
+        statusLbl.innerText = "Ayarlar yükleniyor...";
+        await dbService.saveSettings(InitialData.settings);
+
+        statusLbl.innerText = "Kategoriler aktarılıyor...";
+        for (let item of InitialData.categories) {
+          // Delete existing temp ID in favor of Firestore auto ID (or keep as needed, we'll just write it)
+          await dbService.createCategory(item);
+        }
+
+        statusLbl.innerText = "Kitaplar aktarılıyor...";
+        for (let item of InitialData.books) {
+          await dbService.createBook(item);
+        }
+
+        statusLbl.innerText = "Yazılar aktarılıyor...";
+        for (let item of InitialData.articles) {
+          await dbService.createArticle(item);
+        }
+
+        statusLbl.innerText = "Yorumlar aktarılıyor...";
+        for (let item of InitialData.comments) {
+          await dbService.createComment(item);
+        }
+        
+        statusLbl.innerText = "Haberler & Etkinlikler aktarılıyor...";
+        for (let item of InitialData.news) {
+          await dbService.createNews(item);
+        }
+
+        statusLbl.innerText = "İşlem Tamamlandı! Tüm eski veriler yeni veritabanına kaydedildi. Bu sekmeyi kapatabilirsiniz.";
+        setTimeout(() => { window.location.href = "/index.html"; }, 3000);
+
+      } catch (err) {
+        console.error(err);
+        statusLbl.innerText = "Aktarım sırasında bir hata oluştu: " + err.message;
+        statusLbl.className = "status error";
+      }
+    }
+
+    seedDatabase();
+  </script>
+</body>
+</html>

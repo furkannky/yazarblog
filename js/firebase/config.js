@@ -3,13 +3,13 @@ import { mockDBInstance } from './mockdb.js';
 // --- FIREBASE CONFIGURATION COAT ---
 // If you want to use a real Firebase project, fill in these keys:
 export const firebaseConfig = {
-  apiKey: "", // Empty to use mock mode
-  authDomain: "",
-  projectId: "",
-  storageBucket: "",
-  messagingSenderId: "",
-  appId: "",
-  measurementId: ""
+  apiKey: "AIzaSyDBmylwAKXzx9YfDtNhEyZ6293GRjs4QNs",
+  authDomain: "yazar-portali.firebaseapp.com",
+  projectId: "yazar-portali",
+  storageBucket: "yazar-portali.firebasestorage.app",
+  messagingSenderId: "532764976906",
+  appId: "1:532764976906:web:07b710bc013e8f74a9bcf3",
+  measurementId: "G-1KFKQVB17G"
 };
 
 // Detect if Firebase configuration is provided
@@ -407,7 +407,7 @@ export const dbService = {
   saveSettings: async (data) => {
     try {
       if (isUsingMock || !firebaseLoaded) {
-        mockDBInstance.saveData("settings", data);
+        mockDBInstance.saveList("settings", data);
         return data;
       }
       const { doc, setDoc } = await import("https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js");
@@ -416,8 +416,8 @@ export const dbService = {
       return data;
     } catch (err) {
       console.warn("Firestore saveSettings failed, falling back to local:", err);
-      mockDBInstance.saveData("settings", data);
-      return data;
+      mockDBInstance.saveList("settings", data);
+      throw err; // Throw the error so the UI knows Firebase write actually failed!
     }
   },
 

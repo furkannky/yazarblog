@@ -205,7 +205,7 @@ bookForm.addEventListener("submit", async (e) => {
   const description = document.getElementById("book-desc-input").value.trim();
   
   const cover = document.getElementById("book-cover-url").value.trim() || 
-                "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='150'><rect width='100%' height='100%' fill='%23ccc'/></svg>";
+                "data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='150'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3C/svg%3E";
   
   const pdfUrl = document.getElementById("book-pdf-url").value.trim();
   const pdfSize = document.getElementById("book-pdf-size").value.trim();

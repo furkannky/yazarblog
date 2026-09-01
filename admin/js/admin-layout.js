@@ -2,20 +2,30 @@
 import { authService, dbService } from '/js/firebase/config.js';
 import { showToast } from '/js/components/ui.js';
 
-export function runAdminGuard() {
-  const user = authService.getCurrentUser();
-  if (!user) {
-    showToast("Oturum süresi doldu veya yetkisiz erişim. Giriş sayfasına yönlendiriliyorsunuz...", "error");
-    setTimeout(() => {
-      window.location.href = "/admin/login.html";
-    }, 800);
-    return false;
-  }
-  return true;
+export async function runAdminGuard() {
+  return new Promise((resolve) => {
+    // Check locally first for instant resolve in offline mode
+    const immediateUser = authService.getCurrentUser();
+    if (immediateUser) return resolve(true);
+
+    // Wait for the Firebase Auth to explicitly broadcast its current state
+    authService.onStateChange((user) => {
+      if (!user) {
+        showToast("Oturum süresi doldu veya yetkisiz erişim. Giriş sayfasına yönlendiriliyorsunuz...", "error");
+        setTimeout(() => {
+          window.location.href = "/admin/login.html";
+        }, 800);
+        resolve(false);
+      } else {
+        resolve(true);
+      }
+    });
+  });
 }
 
 export async function injectAdminStructure(activePage = "") {
-  if (!runAdminGuard()) return;
+  const isAllowed = await runAdminGuard();
+  if (!isAllowed) return;
 
   const wrapper = document.querySelector(".admin-wrapper");
   if (!wrapper) return;
@@ -26,7 +36,7 @@ export async function injectAdminStructure(activePage = "") {
 
   const user = authService.getCurrentUser();
   const userName = user.email ? user.email.split("@")[0] : "Admin";
-  const userAvatar = user.avatar || "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100'><rect width='100' height='100' fill='%23ccc'/></svg>";
+  const userAvatar = user.avatar || "data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Crect width='100' height='100' fill='%23ccc'/%3E%3C/svg%3E";
 
   const path = window.location.pathname;
 

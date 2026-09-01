@@ -1,7 +1,7 @@
 // Local Mock Database for the Author Template (Development & Preview Mode)
 // Simulates Firebase responses perfectly to decouple UI logic from backend
 
-const InitialData = {
+export const InitialData = {
   categories: [
     { id: "cat-1", name: "Edebiyat", slug: "edebiyat", order: 1 },
     { id: "cat-2", name: "Tarih", slug: "tarih", order: 2 },

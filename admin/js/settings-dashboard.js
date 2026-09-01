@@ -60,7 +60,8 @@ form.addEventListener("submit", async (e) => {
     await dbService.updateSettings(updatedSettings);
     showToast("Tercihler başarıyla kaydedildi!");
   } catch (err) {
-    showToast("Değişiklikler kaydedilemedi.", "error");
+    showToast("Kaydedilemedi: " + (err.message || err), "error");
+    console.error(err);
   }
 });
 

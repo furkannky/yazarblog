@@ -17,7 +17,7 @@ const initAboutPage = () => {
   return Promise.resolve();
 };
 
-document.addEventListener("DOMContentLoaded", async () => {
+async function initApp() {
   // Detect Current Page
   const path = window.location.pathname;
   let activeTab = "";
@@ -66,4 +66,10 @@ document.addEventListener("DOMContentLoaded", async () => {
   } else if (activeTab === "pdfs") {
     await initPdfsPage();
   }
-});
+}
+
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", initApp);
+} else {
+  initApp();
+}

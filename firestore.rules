@@ -5,7 +5,7 @@ service cloud.firestore {
 
     // Helper to check if requester is authenticated admin
     function isAdmin() {
-      return request.auth != null && request.auth.token.email == 'admin@publish.site';
+      return request.auth != null;
     }
 
     // Articles: Anyone can read published articles. Only admins can read drafts / write articles.
